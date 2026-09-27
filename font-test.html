@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sacramento Fine-Tuning</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    background: #e9e2d9;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 16px 80px;
+    margin: 0;
+    gap: 22px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  .header {
+    text-align: center;
+    max-width: 680px;
+  }
+  .header h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    color: #404a43;
+    font-size: 1.8rem;
+    margin: 0 0 6px;
+  }
+  .header p {
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    margin: 0;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    width: 100%;
+    max-width: 760px;
+  }
+  .row {
+    display: inline-flex;
+    align-items: baseline;
+    background: #f7f4ec;
+    padding: 16px 32px;
+    border-radius: 10px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+    white-space: nowrap;
+    border: 1px solid rgba(0,0,0,0.04);
+  }
+  .serif {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 3.5rem;
+    font-weight: 500;
+    color: #404a43;
+    letter-spacing: -0.015em;
+    position: relative;
+    z-index: 2;
+  }
+  .script {
+    font-family: 'Sacramento', cursive;
+    font-style: italic;
+    transform: skewX(-11deg);
+    transform-origin: left baseline;
+    display: inline-block;
+    color: #db9c93;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: geometricPrecision;
+    position: relative;
+    z-index: 1;
+    line-height: 1;
+  }
+  .label-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .label {
+    font-family: monospace;
+    font-size: 0.85rem;
+    color: #222;
+    font-weight: 700;
+  }
+  .badge {
+    background: #2a7b4c;
+    color: #fff;
+    font-size: 0.72rem;
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-weight: 600;
+  }
+
+  /* Interactive live tuner */
+  .interactive-box {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 20px 24px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    width: 100%;
+    max-width: 760px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    justify-content: center;
+    font-size: 0.85rem;
+    color: #333;
+  }
+  .control-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .control-group input[type=range] {
+    cursor: pointer;
+  }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Sacramento&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="header">
+    <h1>Sacramento — Weight & Width Tuning</h1>
+    <p>Adjusted for a thin, delicate monoline aesthetic (not bold/heavy) with the open <em>d</em>-loop.</p>
+  </div>
+
+  <!-- LIVE TUNER CARD -->
+  <div class="card">
+    <div class="row">
+      <span class="serif">Lauryn</span>
+      <span id="live-script" class="script" style="font-size: 2.75rem; margin: 0 0.14em 0 0.08em; transform: scaleX(1); transform-origin: left baseline; display: inline-block;">and</span>
+      <span class="serif">Littles</span>
+    </div>
+    <div class="label-wrap">
+      <div class="label" style="color: #2a7b4c;">Live Tuned Sacramento</div>
+      <div class="badge">Use sliders below to test in real-time</div>
+    </div>
+  </div>
+
+  <!-- SLIDER CONTROLS -->
+  <div class="interactive-box">
+    <div style="font-weight:700;font-size:0.95rem;color:#404a43;">Real-time Sliders (Thin / Delicate Adjustments)</div>
+    <div class="controls">
+      <div class="control-group">
+        <label for="size-slider">Scale / Size (smaller = thinner lines):</label>
+        <input type="range" id="size-slider" min="2.2" max="3.3" step="0.05" value="2.75">
+        <span id="size-val">2.75rem</span>
+      </div>
+      <div class="control-group">
+        <label for="width-slider">Horizontal Width (scaleX):</label>
+        <input type="range" id="width-slider" min="0.80" max="1.25" step="0.02" value="1.0">
+        <span id="width-val">1.00x</span>
+      </div>
+      <div class="control-group">
+        <label for="left-gap-slider">Left Gap:</label>
+        <input type="range" id="left-gap-slider" min="0.02" max="0.25" step="0.02" value="0.08">
+        <span id="left-gap-val">0.08em</span>
+      </div>
+      <div class="control-group">
+        <label for="right-gap-slider">Right Gap:</label>
+        <input type="range" id="right-gap-slider" min="0.02" max="0.25" step="0.02" value="0.14">
+        <span id="right-gap-val">0.14em</span>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="color:#404a43;margin:10px 0 0;">Pre-set Options for Quick Comparison:</h3>
+
+  <!-- Preset 1: Thin & Delicate (font-size: 2.65rem) -->
+  <div class="card">
+    <div class="row">
+      <span class="serif">Lauryn</span>
+      <span class="script" style="font-size: 2.65rem; margin: 0 0.14em 0 0.08em; display: inline-block;">and</span>
+      <span class="serif">Littles</span>
+    </div>
+    <div class="label-wrap">
+      <div class="label">Preset A: Thin & Delicate (2.65rem, natural 1.0 width)</div>
+      <div class="badge">Fine, lighter stroke weight</div>
+    </div>
+  </div>
+
+  <!-- Preset 2: Slightly Slimmed Horizontal Width (scaleX: 0.92) -->
+  <div class="card">
+    <div class="row">
+      <span class="serif">Lauryn</span>
+      <span class="script" style="font-size: 2.75rem; transform: scaleX(0.92); transform-origin: left baseline; margin: 0 0.12em 0 0.08em; display: inline-block;">and</span>
+      <span class="serif">Littles</span>
+    </div>
+    <div class="label-wrap">
+      <div class="label">Preset B: Slimmed Width (scaleX: 0.92 — narrower & delicate)</div>
+    </div>
+  </div>
+
+  <!-- Preset 3: Balanced Medium-Thin (font-size: 2.85rem) -->
+  <div class="card">
+    <div class="row">
+      <span class="serif">Lauryn</span>
+      <span class="script" style="font-size: 2.85rem; margin: 0 0.14em 0 0.08em; display: inline-block;">and</span>
+      <span class="serif">Littles</span>
+    </div>
+    <div class="label-wrap">
+      <div class="label">Preset C: Balanced Standard (2.85rem)</div>
+    </div>
+  </div>
+
+  <!-- Preset 4: Slightly Widened (scaleX: 1.08) -->
+  <div class="card">
+    <div class="row">
+      <span class="serif">Lauryn</span>
+      <span class="script" style="font-size: 2.65rem; transform: scaleX(1.08); transform-origin: left baseline; margin: 0 0.16em 0 0.08em; display: inline-block;">and</span>
+      <span class="serif">Littles</span>
+    </div>
+    <div class="label-wrap">
+      <div class="label">Preset D: Slightly Expanded Width (scaleX: 1.08 with thin stroke)</div>
+    </div>
+  </div>
+
+  <script>
+    const liveScript = document.getElementById('live-script');
+    const sizeSlider = document.getElementById('size-slider');
+    const sizeVal = document.getElementById('size-val');
+    const widthSlider = document.getElementById('width-slider');
+    const widthVal = document.getElementById('width-val');
+    const lgSlider = document.getElementById('left-gap-slider');
+    const lgVal = document.getElementById('left-gap-val');
+    const rgSlider = document.getElementById('right-gap-slider');
+    const rgVal = document.getElementById('right-gap-val');
+
+    function update() {
+      liveScript.style.fontSize = sizeSlider.value + 'rem';
+      sizeVal.textContent = sizeSlider.value + 'rem';
+
+      liveScript.style.transform = `scaleX(${widthSlider.value})`;
+      widthVal.textContent = parseFloat(widthSlider.value).toFixed(2) + 'x';
+
+      liveScript.style.marginLeft = lgSlider.value + 'em';
+      lgVal.textContent = lgSlider.value + 'em';
+
+      liveScript.style.marginRight = rgSlider.value + 'em';
+      rgVal.textContent = rgSlider.value + 'em';
+    }
+
+    sizeSlider.addEventListener('input', update);
+    widthSlider.addEventListener('input', update);
+    lgSlider.addEventListener('input', update);
+    rgSlider.addEventListener('input', update);
+  </script>
+</body>
+</html>
