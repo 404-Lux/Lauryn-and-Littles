@@ -373,6 +373,114 @@ ul {
 }
 
 /* ==========================================================================
+   ENTRANCE TRANSITIONS (Luxury Staggered Page Load Animation)
+   ========================================================================== */
+
+@keyframes luxuryFadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes luxuryFadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes luxuryFadeInScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.88) translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes luxuryFadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Header & Logo Entrance */
+.header-container {
+  animation: luxuryFadeInDown 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.05s backwards;
+}
+
+/* Hero Content Staggered Entrance */
+.hero-heart-badge {
+  animation: luxuryFadeInScale 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.15s backwards;
+}
+
+.hero-headline {
+  animation: luxuryFadeInUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.28s backwards;
+}
+
+.btn-hero-primary {
+  animation: luxuryFadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.48s backwards;
+}
+
+.btn-hero-secondary {
+  animation: luxuryFadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.58s backwards;
+}
+
+.hero-divider {
+  animation: luxuryFadeIn 0.85s ease 0.7s backwards;
+}
+
+/* Legal Pages Staggered Entrance */
+.legal-nav-bar {
+  animation: luxuryFadeInDown 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.1s backwards;
+}
+
+.legal-header-hero {
+  animation: luxuryFadeInUp 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.2s backwards;
+}
+
+.legal-card {
+  animation: luxuryFadeInUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.35s backwards;
+}
+
+.legal-bottom-actions {
+  animation: luxuryFadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.5s backwards;
+}
+
+/* Accessibility: Respect Reduced Motion Preference */
+@media (prefers-reduced-motion: reduce) {
+  .header-container,
+  .hero-heart-badge,
+  .hero-headline,
+  .btn-hero-primary,
+  .btn-hero-secondary,
+  .hero-divider,
+  .legal-nav-bar,
+  .legal-header-hero,
+  .legal-card,
+  .legal-bottom-actions,
+  .heart-svg {
+    animation: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
+
+/* ==========================================================================
    FOOTER (Clean & Minimal: Instagram Only)
    ========================================================================== */
 .site-footer {
