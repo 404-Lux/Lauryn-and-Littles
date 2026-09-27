@@ -1389,15 +1389,38 @@ ul {
 
 /* Phone Responsiveness (< 768px) */
 @media (max-width: 767px) {
+  .site-header {
+    background-color: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border-bottom: 1px solid transparent !important;
+    box-shadow: none !important;
+  }
+
+  .site-header.scrolled {
+    background-color: rgba(247, 242, 234, 0.96) !important;
+    backdrop-filter: blur(14px) !important;
+    -webkit-backdrop-filter: blur(14px) !important;
+    border-bottom: 1px solid rgba(67, 85, 72, 0.08) !important;
+    box-shadow: 0 4px 20px rgba(50, 60, 52, 0.08) !important;
+  }
+
+  .legal-page-body .site-header {
+    background-color: rgba(247, 242, 234, 0.96) !important;
+    backdrop-filter: blur(14px) !important;
+    -webkit-backdrop-filter: blur(14px) !important;
+    border-bottom: 1px solid rgba(67, 85, 72, 0.08) !important;
+  }
+
   .hero-section {
     width: 100%;
-    min-height: 85dvh;
-    min-height: 85dvh;
-    height: 85vh;
-    height: 85dvh;
+    min-height: 100vh;
+    min-height: 100dvh;
+    height: 100vh;
+    height: 100dvh;
     aspect-ratio: unset;
-    background-color: #e9e2d9; /* cream wall colour — matches top of portrait image exactly */
-    background-image: url('../images/bg_portrait.png');
+    background-color: var(--color-wall-portrait);
+    background-image: linear-gradient(180deg, rgba(255, 252, 247, 0.22) 0%, rgba(255, 255, 255, 0) 35%), url('../images/bg_portrait.png');
     background-repeat: no-repeat;
     background-position: center bottom; /* anchors family at bottom, cream wall above */
     background-size: 100% auto; /* full width, proportional height — zero cropping */

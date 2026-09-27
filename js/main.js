@@ -403,13 +403,18 @@ document.addEventListener('DOMContentLoaded', () => {
   const isLegalPage = document.body.classList.contains('legal-page-body');
   if (siteHeader && !isLegalPage) {
     const handleHeaderScroll = () => {
-      if (window.scrollY > 20) {
+      const scrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+      if (scrollY > 12) {
         siteHeader.classList.add('scrolled');
       } else {
         siteHeader.classList.remove('scrolled');
       }
     };
     window.addEventListener('scroll', handleHeaderScroll, { passive: true });
+    window.addEventListener('touchmove', handleHeaderScroll, { passive: true });
+    document.addEventListener('scroll', handleHeaderScroll, { passive: true });
+    window.addEventListener('resize', handleHeaderScroll, { passive: true });
+    window.addEventListener('load', handleHeaderScroll, { passive: true });
     handleHeaderScroll(); // Check on initial page load
   }
 
