@@ -13,7 +13,7 @@
 
 :root {
   /* Exact Colors from Reference Design */
-  --color-sage-deep: #435548;
+  --color-sage-deep: #4a5c52;
   --color-sage-btn: #526757;
   --color-sage-btn-hover: #405244;
   --color-sage-muted: #7d877e;
@@ -170,7 +170,7 @@ ul {
   font-family: 'Playfair Display', Georgia, serif;
   font-size: 1.85rem;
   font-weight: 500;
-  color: #4b5852; /* vintage deep slate / muted forest green */
+  color: #4a5c52; /* vintage deep slate / muted forest green */
   letter-spacing: -0.01em; /* slight tightening for high-fashion editorial look */
   line-height: 1;
   position: relative;
@@ -299,7 +299,7 @@ ul {
   align-items: center;
   justify-content: center;
   margin-bottom: clamp(22px, 4.5vh, 32px);
-  color: #3d4f42;
+  color: #4a5c52;
   line-height: 1.12;
 }
 
@@ -308,7 +308,7 @@ ul {
   font-size: clamp(3.2rem, 9.6vw, 4.5rem);
   font-weight: 400;
   font-style: normal;
-  color: #3d4f42;
+  color: #4a5c52;
   display: block;
   letter-spacing: normal;
   transform: none;
@@ -333,7 +333,7 @@ ul {
   font-size: clamp(2.2rem, 6.6vw, 2.9rem);
   font-weight: 400;
   letter-spacing: -0.012em;
-  color: #3d4f42;
+  color: #4a5c52;
   display: block;
   line-height: 1.16;
   text-rendering: optimizeLegibility;
@@ -357,23 +357,23 @@ ul {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  background-color: #384c3e;
+  background-color: #4a5c52;
   color: #ffffff;
   font-family: var(--font-sans);
   font-size: clamp(0.92rem, 2.7vw, 1.02rem);
   font-weight: 500;
   padding: 13px 28px;
   border-radius: 9999px;
-  box-shadow: 0 4px 14px rgba(40, 56, 45, 0.22);
+  box-shadow: 0 4px 14px rgba(74, 92, 82, 0.25);
   letter-spacing: 0.02em;
   cursor: pointer;
   transition: var(--transition-smooth);
 }
 
 .btn-hero-primary:hover {
-  background-color: #2b3b2f;
+  background-color: #3d4e44;
   transform: translateY(-2px);
-  box-shadow: 0 8px 22px rgba(40, 56, 45, 0.35);
+  box-shadow: 0 8px 22px rgba(74, 92, 82, 0.35);
 }
 
 .btn-hero-primary .btn-arrow {
@@ -921,10 +921,10 @@ ul {
 
 /* Green when 'I'm looking for a Sitter' is active (matching Find a Sitter button) */
 #role-family-btn.active {
-  background-color: #384c3e;
+  background-color: #4a5c52;
   color: #ffffff;
   font-weight: 600;
-  box-shadow: 0 3px 12px rgba(56, 76, 62, 0.28);
+  box-shadow: 0 3px 12px rgba(74, 92, 82, 0.28);
 }
 
 /* Pink/blush when 'I'm a Sitter looking for a Family' is active (matching Find a Family button) */
@@ -1040,9 +1040,9 @@ ul {
   font-family: inherit;
   font-size: 0.9375rem;
   font-weight: 500;
-  color: #314236;
+  color: #4a5c52;
   background-color: #faf7f2;
-  border: 1.5px solid rgba(67, 85, 72, 0.16);
+  border: 1.5px solid rgba(74, 92, 82, 0.18);
   border-radius: 12px;
   padding: 12px 14px;
   cursor: pointer;
@@ -1113,7 +1113,7 @@ ul {
   padding: 10px 14px;
   border-radius: 8px;
   font-size: 0.9rem;
-  color: #314236;
+  color: #4a5c52;
   cursor: pointer;
   transition: all 0.15s ease;
 }
@@ -1124,7 +1124,7 @@ ul {
 }
 
 .custom-select-option.selected {
-  background-color: #384c3e;
+  background-color: #4a5c52;
   color: #ffffff;
   font-weight: 600;
 }
@@ -1155,9 +1155,9 @@ ul {
   font-family: inherit;
   font-size: 0.9375rem;
   font-weight: 500;
-  color: #314236;
+  color: #4a5c52;
   background-color: #faf7f2;
-  border: 1.5px solid rgba(67, 85, 72, 0.16);
+  border: 1.5px solid rgba(74, 92, 82, 0.18);
   border-radius: 12px;
   padding: 12px 14px;
   cursor: pointer;
@@ -1220,12 +1220,12 @@ ul {
   font-family: var(--font-serif);
   font-size: 1.2rem;
   font-weight: 600;
-  color: #314236;
+  color: #4a5c52;
 }
 
 .calendar-nav-btn {
   background: #faf7f2;
-  border: 1px solid rgba(67, 85, 72, 0.15);
+  border: 1px solid rgba(74, 92, 82, 0.18);
   border-radius: 8px;
   width: 28px;
   height: 28px;
@@ -1233,7 +1233,7 @@ ul {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  color: #314236;
+  color: #4a5c52;
   font-size: 1rem;
   line-height: 1;
   transition: all 0.15s ease;
@@ -1271,7 +1271,7 @@ ul {
   background: transparent;
   font-size: 0.85rem;
   font-weight: 500;
-  color: #314236;
+  color: #4a5c52;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -1290,10 +1290,10 @@ ul {
 }
 
 .calendar-day-btn.selected {
-  background-color: #384c3e;
+  background-color: #4a5c52;
   color: #ffffff;
   font-weight: 700;
-  box-shadow: 0 3px 8px rgba(56, 76, 62, 0.35);
+  box-shadow: 0 3px 8px rgba(74, 92, 82, 0.35);
 }
 
 .calendar-day-btn.disabled {
@@ -1726,7 +1726,7 @@ ul {
     font-size: clamp(3.2rem, 4.2vw, 3.9rem);
     font-weight: 400;
     font-style: normal;
-    color: #314236;
+    color: #4a5c52;
     text-align: center;
     transform: none;
     margin-bottom: 4px;
@@ -1746,7 +1746,7 @@ ul {
     font-family: var(--font-headline-serif);
     font-size: clamp(2.15rem, 2.7vw, 2.65rem);
     font-weight: 400;
-    color: #314236;
+    color: #4a5c52;
     text-align: center;
     line-height: 1.15;
     letter-spacing: -0.01em;
