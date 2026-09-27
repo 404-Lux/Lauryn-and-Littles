@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 4. Boutique Custom Calendar Date Picker (No OS blue calendar popup)
+  // 4. Boutique Custom Calendar Date Range Picker (Hotel Booking Style 2-Click Selection)
   const dateWrap = document.getElementById('custom-date-picker');
   const dateTrigger = document.getElementById('date-picker-trigger');
   const dateDisplayLabel = document.getElementById('date-display-label');
@@ -146,6 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const calDaysGrid = document.getElementById('cal-days-grid');
   const calTodayBtn = document.getElementById('cal-btn-today');
   const calClearBtn = document.getElementById('cal-btn-clear');
+  const calRangeHint = document.getElementById('cal-range-hint');
 
   const monthNames = [
     'January', 'February', 'March', 'April', 'May', 'June',
@@ -155,18 +156,19 @@ document.addEventListener('DOMContentLoaded', () => {
   const dayNamesShort = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
   let currentDate = new Date();
-  let selectedDate = new Date();
+  let rangeStartDate = new Date();
+  rangeStartDate.setHours(0, 0, 0, 0);
+  let rangeEndDate = null;
   let viewYear = currentDate.getFullYear();
   let viewMonth = currentDate.getMonth();
 
-  // Helper to format date for display
-  const formatDateDisplay = (d) => {
-    if (!d) return 'Select Date';
+  // Helper to format short date
+  const formatShortDate = (d) => {
+    if (!d) return '';
     const dayName = dayNamesShort[d.getDay()];
     const dateNum = d.getDate();
     const monthName = monthNames[d.getMonth()].slice(0, 3);
-    const yr = d.getFullYear();
-    return `${dayName}, ${dateNum} ${monthName} ${yr}`;
+    return `${dayName}, ${dateNum} ${monthName}`;
   };
 
   // Helper to format YYYY-MM-DD
@@ -178,11 +180,31 @@ document.addEventListener('DOMContentLoaded', () => {
     return `${y}-${m}-${day}`;
   };
 
-  // Set initial date to today
-  if (hiddenDateInput && dateDisplayLabel) {
-    hiddenDateInput.value = formatISO(selectedDate);
-    dateDisplayLabel.textContent = formatDateDisplay(selectedDate);
-  }
+  const updateDateDisplay = () => {
+    if (rangeStartDate && rangeEndDate) {
+      if (rangeStartDate.getTime() === rangeEndDate.getTime()) {
+        if (dateDisplayLabel) dateDisplayLabel.textContent = `${formatShortDate(rangeStartDate)} (1 day)`;
+        if (hiddenDateInput) hiddenDateInput.value = formatISO(rangeStartDate);
+      } else {
+        const diffTime = Math.abs(rangeEndDate - rangeStartDate);
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
+        if (dateDisplayLabel) dateDisplayLabel.textContent = `${formatShortDate(rangeStartDate)} – ${formatShortDate(rangeEndDate)} (${diffDays} days)`;
+        if (hiddenDateInput) hiddenDateInput.value = `${formatISO(rangeStartDate)} to ${formatISO(rangeEndDate)}`;
+      }
+      if (calRangeHint) calRangeHint.textContent = 'Dates selected. Click any date to change range.';
+    } else if (rangeStartDate) {
+      if (dateDisplayLabel) dateDisplayLabel.textContent = `${formatShortDate(rangeStartDate)} – Click end date`;
+      if (hiddenDateInput) hiddenDateInput.value = formatISO(rangeStartDate);
+      if (calRangeHint) calRangeHint.textContent = 'Step 2: Click departure / end date';
+    } else {
+      if (dateDisplayLabel) dateDisplayLabel.textContent = 'Select Dates';
+      if (hiddenDateInput) hiddenDateInput.value = '';
+      if (calRangeHint) calRangeHint.textContent = 'Click twice for start & end dates';
+    }
+  };
+
+  // Initialize date display
+  updateDateDisplay();
 
   const renderCalendar = (year, month) => {
     if (!calDaysGrid || !calMonthYear) return;
@@ -205,11 +227,13 @@ document.addEventListener('DOMContentLoaded', () => {
     for (let d = 1; d <= totalDays; d++) {
       const dayDate = new Date(year, month, d);
       dayDate.setHours(0, 0, 0, 0);
+      const dayTime = dayDate.getTime();
 
       const dayBtn = document.createElement('button');
       dayBtn.type = 'button';
       dayBtn.className = 'calendar-day-btn';
       dayBtn.textContent = d;
+      dayBtn.dataset.time = dayTime;
 
       // Check if past date
       if (dayDate < today) {
@@ -217,27 +241,64 @@ document.addEventListener('DOMContentLoaded', () => {
         dayBtn.disabled = true;
       } else {
         // Today indicator
-        if (dayDate.getTime() === today.getTime()) {
+        if (dayTime === today.getTime()) {
           dayBtn.classList.add('today');
         }
 
-        // Selected indicator
-        if (selectedDate && dayDate.getTime() === selectedDate.getTime()) {
-          dayBtn.classList.add('selected');
+        // Range styling
+        if (rangeStartDate && dayTime === rangeStartDate.getTime()) {
+          dayBtn.classList.add('range-start', 'selected');
         }
+        if (rangeEndDate && dayTime === rangeEndDate.getTime()) {
+          dayBtn.classList.add('range-end', 'selected');
+        }
+        if (rangeStartDate && rangeEndDate && dayTime > rangeStartDate.getTime() && dayTime < rangeEndDate.getTime()) {
+          dayBtn.classList.add('in-range');
+        }
+
+        dayBtn.addEventListener('mouseenter', () => {
+          if (rangeStartDate && !rangeEndDate) {
+            const allDayBtns = calDaysGrid.querySelectorAll('.calendar-day-btn:not(.disabled)');
+            allDayBtns.forEach((btn) => {
+              const bTime = Number(btn.dataset.time);
+              if (bTime > rangeStartDate.getTime() && bTime <= dayTime) {
+                btn.classList.add('range-hover');
+              } else {
+                btn.classList.remove('range-hover');
+              }
+            });
+          }
+        });
 
         dayBtn.addEventListener('click', (e) => {
           e.stopPropagation();
-          selectedDate = new Date(year, month, d);
-          selectedDate.setHours(0, 0, 0, 0);
+          const clickedDate = new Date(year, month, d);
+          clickedDate.setHours(0, 0, 0, 0);
 
-          if (hiddenDateInput) hiddenDateInput.value = formatISO(selectedDate);
-          if (dateDisplayLabel) dateDisplayLabel.textContent = formatDateDisplay(selectedDate);
-
-          if (dateWrap) dateWrap.classList.remove('open');
-          if (dateTrigger) dateTrigger.setAttribute('aria-expanded', 'false');
-
-          renderCalendar(viewYear, viewMonth);
+          if (!rangeStartDate || (rangeStartDate && rangeEndDate)) {
+            // First click: select start date
+            rangeStartDate = clickedDate;
+            rangeEndDate = null;
+            updateDateDisplay();
+            renderCalendar(viewYear, viewMonth);
+          } else if (rangeStartDate && !rangeEndDate) {
+            // Second click: select end date
+            if (clickedDate.getTime() < rangeStartDate.getTime()) {
+              // Clicked earlier date -> make it new start date
+              rangeStartDate = clickedDate;
+              rangeEndDate = null;
+              updateDateDisplay();
+              renderCalendar(viewYear, viewMonth);
+            } else {
+              rangeEndDate = clickedDate;
+              updateDateDisplay();
+              renderCalendar(viewYear, viewMonth);
+              setTimeout(() => {
+                if (dateWrap) dateWrap.classList.remove('open');
+                if (dateTrigger) dateTrigger.setAttribute('aria-expanded', 'false');
+              }, 250);
+            }
+          }
         });
       }
 
@@ -290,29 +351,183 @@ document.addEventListener('DOMContentLoaded', () => {
       e.stopPropagation();
       const now = new Date();
       now.setHours(0, 0, 0, 0);
-      selectedDate = now;
+      rangeStartDate = now;
+      rangeEndDate = now;
       viewYear = now.getFullYear();
       viewMonth = now.getMonth();
-
-      if (hiddenDateInput) hiddenDateInput.value = formatISO(selectedDate);
-      if (dateDisplayLabel) dateDisplayLabel.textContent = formatDateDisplay(selectedDate);
-
-      if (dateWrap) dateWrap.classList.remove('open');
-      if (dateTrigger) dateTrigger.setAttribute('aria-expanded', 'false');
+      updateDateDisplay();
       renderCalendar(viewYear, viewMonth);
+      setTimeout(() => {
+        if (dateWrap) dateWrap.classList.remove('open');
+        if (dateTrigger) dateTrigger.setAttribute('aria-expanded', 'false');
+      }, 250);
     });
   }
 
   if (calClearBtn) {
     calClearBtn.addEventListener('click', (e) => {
       e.stopPropagation();
-      selectedDate = null;
-      if (hiddenDateInput) hiddenDateInput.value = '';
-      if (dateDisplayLabel) dateDisplayLabel.textContent = 'Select Date';
-
-      if (dateWrap) dateWrap.classList.remove('open');
-      if (dateTrigger) dateTrigger.setAttribute('aria-expanded', 'false');
+      rangeStartDate = null;
+      rangeEndDate = null;
+      updateDateDisplay();
       renderCalendar(viewYear, viewMonth);
+    });
+  }
+
+  // 4b. Boutique Custom Hours Range Picker (2-Click Range Selection)
+  const timeWrap = document.getElementById('custom-time-picker');
+  const timeTrigger = document.getElementById('hours-picker-trigger');
+  const timeDisplayLabel = document.getElementById('hours-display-label');
+  const hiddenTimeInput = document.getElementById('need-start-time');
+  const timeSlotsGrid = document.getElementById('time-slots-grid');
+  const timeRangeHint = document.getElementById('time-range-hint');
+  const timeAllDayBtn = document.getElementById('time-btn-all-day');
+  const timeResetBtn = document.getElementById('time-btn-reset');
+
+  const TIME_SLOTS = [
+    '7:00 AM', '8:00 AM', '9:00 AM',
+    '10:00 AM', '11:00 AM', '12:00 PM',
+    '1:00 PM', '2:00 PM', '3:00 PM',
+    '4:00 PM', '5:00 PM', '6:00 PM',
+    '7:00 PM', '8:00 PM', '9:00 PM',
+    '10:00 PM', '11:00 PM', 'Overnight'
+  ];
+
+  let timeStartIdx = 2; // '9:00 AM'
+  let timeEndIdx = 7;   // '2:00 PM'
+
+  const updateTimeDisplay = () => {
+    if (timeStartIdx !== null && timeEndIdx !== null) {
+      const startSlot = TIME_SLOTS[timeStartIdx];
+      const endSlot = TIME_SLOTS[timeEndIdx];
+      if (timeStartIdx === timeEndIdx) {
+        if (timeDisplayLabel) timeDisplayLabel.textContent = `${startSlot} (1 hr)`;
+        if (hiddenTimeInput) hiddenTimeInput.value = startSlot;
+      } else {
+        const diffHrs = timeEndIdx - timeStartIdx;
+        const hrText = (startSlot !== 'Overnight' && endSlot !== 'Overnight') ? ` (${diffHrs} hrs)` : '';
+        if (timeDisplayLabel) timeDisplayLabel.textContent = `${startSlot} – ${endSlot}${hrText}`;
+        if (hiddenTimeInput) hiddenTimeInput.value = `${startSlot} - ${endSlot}`;
+      }
+      if (timeRangeHint) timeRangeHint.textContent = 'Hours selected. Click any slot to change.';
+    } else if (timeStartIdx !== null) {
+      const startSlot = TIME_SLOTS[timeStartIdx];
+      if (timeDisplayLabel) timeDisplayLabel.textContent = `${startSlot} – Click end hour`;
+      if (hiddenTimeInput) hiddenTimeInput.value = startSlot;
+      if (timeRangeHint) timeRangeHint.textContent = 'Step 2: Click end hour';
+    } else {
+      if (timeDisplayLabel) timeDisplayLabel.textContent = 'Select Hours';
+      if (hiddenTimeInput) hiddenTimeInput.value = '';
+      if (timeRangeHint) timeRangeHint.textContent = 'Click twice for start & end hours';
+    }
+  };
+
+  updateTimeDisplay();
+
+  const renderTimeSlots = () => {
+    if (!timeSlotsGrid) return;
+    timeSlotsGrid.innerHTML = '';
+
+    TIME_SLOTS.forEach((slot, idx) => {
+      const slotBtn = document.createElement('button');
+      slotBtn.type = 'button';
+      slotBtn.className = 'time-slot-btn';
+      slotBtn.textContent = slot;
+      slotBtn.dataset.idx = idx;
+
+      // Active styling
+      if (timeStartIdx !== null && idx === timeStartIdx) {
+        slotBtn.classList.add('range-start', 'selected');
+      }
+      if (timeEndIdx !== null && idx === timeEndIdx) {
+        slotBtn.classList.add('range-end', 'selected');
+      }
+      if (timeStartIdx !== null && timeEndIdx !== null && idx > timeStartIdx && idx < timeEndIdx) {
+        slotBtn.classList.add('in-range');
+      }
+
+      slotBtn.addEventListener('mouseenter', () => {
+        if (timeStartIdx !== null && timeEndIdx === null) {
+          const allBtns = timeSlotsGrid.querySelectorAll('.time-slot-btn');
+          allBtns.forEach((btn) => {
+            const bIdx = Number(btn.dataset.idx);
+            if (bIdx > timeStartIdx && bIdx <= idx) {
+              btn.classList.add('range-hover');
+            } else {
+              btn.classList.remove('range-hover');
+            }
+          });
+        }
+      });
+
+      slotBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (timeStartIdx === null || (timeStartIdx !== null && timeEndIdx !== null)) {
+          // 1st click
+          timeStartIdx = idx;
+          timeEndIdx = null;
+          updateTimeDisplay();
+          renderTimeSlots();
+        } else if (timeStartIdx !== null && timeEndIdx === null) {
+          // 2nd click
+          if (idx < timeStartIdx) {
+            timeStartIdx = idx;
+            timeEndIdx = null;
+            updateTimeDisplay();
+            renderTimeSlots();
+          } else {
+            timeEndIdx = idx;
+            updateTimeDisplay();
+            renderTimeSlots();
+            setTimeout(() => {
+              if (timeWrap) timeWrap.classList.remove('open');
+              if (timeTrigger) timeTrigger.setAttribute('aria-expanded', 'false');
+            }, 250);
+          }
+        }
+      });
+
+      timeSlotsGrid.appendChild(slotBtn);
+    });
+  };
+
+  renderTimeSlots();
+
+  if (timeTrigger && timeWrap) {
+    timeTrigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = timeWrap.classList.contains('open');
+      closeAllDropdowns();
+
+      if (!isOpen) {
+        timeWrap.classList.add('open');
+        timeTrigger.setAttribute('aria-expanded', 'true');
+        renderTimeSlots();
+      }
+    });
+  }
+
+  if (timeAllDayBtn) {
+    timeAllDayBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      timeStartIdx = 2; // 9:00 AM
+      timeEndIdx = 10;  // 5:00 PM
+      updateTimeDisplay();
+      renderTimeSlots();
+      setTimeout(() => {
+        if (timeWrap) timeWrap.classList.remove('open');
+        if (timeTrigger) timeTrigger.setAttribute('aria-expanded', 'false');
+      }, 250);
+    });
+  }
+
+  if (timeResetBtn) {
+    timeResetBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      timeStartIdx = null;
+      timeEndIdx = null;
+      updateTimeDisplay();
+      renderTimeSlots();
     });
   }
 
@@ -327,11 +542,15 @@ document.addEventListener('DOMContentLoaded', () => {
       dateWrap.classList.remove('open');
       if (dateTrigger) dateTrigger.setAttribute('aria-expanded', 'false');
     }
+    if (timeWrap) {
+      timeWrap.classList.remove('open');
+      if (timeTrigger) timeTrigger.setAttribute('aria-expanded', 'false');
+    }
   };
 
   document.addEventListener('click', (e) => {
     // If click is outside modal inputs
-    if (!e.target.closest('.custom-select') && !e.target.closest('.custom-date-wrap')) {
+    if (!e.target.closest('.custom-select') && !e.target.closest('.custom-date-wrap') && !e.target.closest('.custom-time-wrap')) {
       closeAllDropdowns();
     }
   });
@@ -352,9 +571,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const clientEmail = document.getElementById('client-email')?.value || '';
     const specificNeed = document.getElementById('specific-need')?.value || '';
     const dateNeeded = document.getElementById('need-date-picker')?.value || '';
-    const scheduleType = document.getElementById('need-schedule-type')?.value || '';
-    const startTime = document.getElementById('need-start-time')?.value || '';
-    const duration = document.getElementById('need-duration')?.value || '';
+    const hoursNeeded = document.getElementById('need-start-time')?.value || '';
     const location = document.getElementById('need-location')?.value || '';
     const additionalNotes = document.getElementById('need-details')?.value || '';
 
@@ -365,9 +582,7 @@ document.addEventListener('DOMContentLoaded', () => {
       email: clientEmail,
       specificNeed: specificNeed,
       dates: dateNeeded,
-      frequency: scheduleType,
-      startTime: startTime,
-      duration: duration,
+      hours: hoursNeeded,
       location: location,
       notes: additionalNotes,
       submittedAt: new Date().toLocaleString('en-AU', { timeZone: 'Australia/Sydney' })
@@ -392,10 +607,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('request-form');
     if (form) form.reset();
 
-    // Re-default date picker after form reset
-    if (datePicker) {
-      datePicker.value = new Date().toISOString().split('T')[0];
-    }
+    // Re-default date range and hours range after form reset
+    rangeStartDate = new Date();
+    rangeStartDate.setHours(0, 0, 0, 0);
+    rangeEndDate = null;
+    updateDateDisplay();
+
+    timeStartIdx = 2; // 9:00 AM
+    timeEndIdx = 7;   // 2:00 PM
+    updateTimeDisplay();
   };
 
   // 4. Header Scroll Transparency Effect (Hero Page only)

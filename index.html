@@ -114,7 +114,6 @@
         <div class="modal-title-wrap">
           <div class="modal-heart">&#9825;</div>
           <h3 id="modal-title">Tell us what you need</h3>
-          <p class="modal-subtitle">Fill out the quick details below to receive fast, tailored quotes.</p>
         </div>
         <button type="button" class="modal-close" id="modal-close-btn" aria-label="Close modal">&times;</button>
       </div>
@@ -129,33 +128,22 @@
         </button>
       </div>
 
-      <!-- Quote Guidance Box (Formal, no emoji) -->
-      <div class="quote-tips-box">
-        <div class="quote-tips-title">For the most accurate quotes, don't forget to add details like:</div>
-        <ul class="quote-tips-list">
-          <li><strong>Children details:</strong> Number of children &amp; their exact ages (e.g. 8-month infant, 4-year-old toddler).</li>
-          <li><strong>Care type:</strong> One-off evening babysitting, regular recurring days, or emergency last-minute care.</li>
-          <li><strong>Special requirements:</strong> Working with Children Check (WWCC), First Aid / CPR, driver's licence.</li>
-          <li><strong>Routines &amp; preferences:</strong> Bedtime routine, meal preparation, school pick-ups, or pets at home.</li>
-        </ul>
-      </div>
-
       <form class="modal-form" id="request-form" onsubmit="event.preventDefault(); window.submitRequest();">
         <input type="hidden" id="request-type" value="Family needing a Sitter">
 
-        <!-- Input for: Be specific on what you need -->
+        <!-- Input for: Be specific on what you need (Flexible Textarea) -->
         <div class="form-field">
           <label for="specific-need">Be specific on what you need:</label>
-          <input type="text" id="specific-need" required placeholder="e.g. Looking for a gentle, WWCC-verified sitter for our 2 toddlers on Friday evening" class="form-input">
+          <textarea id="specific-need" rows="3" required placeholder="e.g. Looking for a gentle, WWCC-verified sitter for our 2 toddlers on Friday evening..." class="form-textarea"></textarea>
         </div>
 
-        <!-- Quick & Convenient Date Selector -->
+        <!-- Dates & Hours Range Pickers (Hotel-Style 2-Click Range Selection) -->
         <div class="form-row">
           <div class="form-field">
             <label for="date-picker-trigger">Dates:</label>
             <div class="custom-date-wrap" id="custom-date-picker">
               <button type="button" class="custom-date-trigger" id="date-picker-trigger" aria-haspopup="dialog" aria-expanded="false">
-                <span id="date-display-label">Select Date</span>
+                <span id="date-display-label">Select Dates</span>
                 <span class="custom-date-icon" aria-hidden="true">
                   <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
@@ -171,6 +159,7 @@
                   <div class="calendar-month-year" id="cal-month-year">September 2026</div>
                   <button type="button" class="calendar-nav-btn" id="cal-next-month" aria-label="Next month">&rarr;</button>
                 </div>
+                <div class="range-helper-hint" id="cal-range-hint">Click twice for start &amp; end dates</div>
                 <div class="calendar-weekdays">
                   <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
                 </div>
@@ -179,100 +168,44 @@
                 </div>
                 <div class="calendar-footer">
                   <button type="button" class="calendar-btn-text" id="cal-btn-today">Today</button>
-                  <button type="button" class="calendar-btn-text" id="cal-btn-clear">Clear</button>
+                  <button type="button" class="calendar-btn-text" id="cal-btn-clear">Reset</button>
                 </div>
               </div>
               <input type="hidden" id="need-date-picker" name="date" value="">
             </div>
           </div>
+
           <div class="form-field">
-            <label id="lbl-schedule-type">Booking Frequency:</label>
-            <div class="custom-select" data-id="need-schedule-type">
-              <button type="button" class="custom-select-trigger" aria-haspopup="true" aria-expanded="false" aria-labelledby="lbl-schedule-type">
-                <span class="custom-select-label">One-Off Booking</span>
-                <span class="custom-select-arrow" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            <label id="lbl-hours">Hours:</label>
+            <div class="custom-time-wrap" id="custom-time-picker">
+              <button type="button" class="custom-date-trigger" id="hours-picker-trigger" aria-haspopup="dialog" aria-expanded="false" aria-labelledby="lbl-hours">
+                <span id="hours-display-label">Select Hours</span>
+                <span class="custom-date-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                  </svg>
                 </span>
               </button>
-              <ul class="custom-select-menu">
-                <li class="custom-select-option selected" data-value="One-Off">
-                  <span>One-Off Booking</span>
-                  <span class="option-check">&#10003;</span>
-                </li>
-                <li class="custom-select-option" data-value="Regular Weekly">
-                  <span>Regular Weekly</span>
-                  <span class="option-check">&#10003;</span>
-                </li>
-                <li class="custom-select-option" data-value="Weekends Only">
-                  <span>Weekends Only</span>
-                  <span class="option-check">&#10003;</span>
-                </li>
-                <li class="custom-select-option" data-value="Emergency / Today">
-                  <span>Emergency / Today</span>
-                  <span class="option-check">&#10003;</span>
-                </li>
-                <li class="custom-select-option" data-value="Flexible">
-                  <span>Flexible Dates</span>
-                  <span class="option-check">&#10003;</span>
-                </li>
-              </ul>
-              <input type="hidden" id="need-schedule-type" value="One-Off">
+              <div class="custom-time-popup" id="custom-time-popup">
+                <div class="range-helper-hint" id="time-range-hint">Click twice for start &amp; end hours</div>
+                <div class="time-slots-grid" id="time-slots-grid">
+                  <!-- Rendered dynamically -->
+                </div>
+                <div class="calendar-footer">
+                  <button type="button" class="calendar-btn-text" id="time-btn-all-day">Full Day (9am–5pm)</button>
+                  <button type="button" class="calendar-btn-text" id="time-btn-reset">Reset</button>
+                </div>
+              </div>
+              <input type="hidden" id="need-start-time" name="hours" value="">
             </div>
           </div>
         </div>
 
-        <!-- Quick & Convenient Hours Selector -->
-        <div class="form-row">
-          <div class="form-field">
-            <label id="lbl-start-time">Hours (Start Time):</label>
-            <div class="custom-select" data-id="need-start-time">
-              <button type="button" class="custom-select-trigger" aria-haspopup="true" aria-expanded="false" aria-labelledby="lbl-start-time">
-                <span class="custom-select-label">9:00 AM</span>
-                <span class="custom-select-arrow" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-                </span>
-              </button>
-              <ul class="custom-select-menu">
-                <li class="custom-select-option" data-value="07:00 AM"><span>7:00 AM</span><span class="option-check">&#10003;</span></li>
-                <li class="custom-select-option" data-value="08:00 AM"><span>8:00 AM</span><span class="option-check">&#10003;</span></li>
-                <li class="custom-select-option selected" data-value="09:00 AM"><span>9:00 AM</span><span class="option-check">&#10003;</span></li>
-                <li class="custom-select-option" data-value="10:00 AM"><span>10:00 AM</span><span class="option-check">&#10003;</span></li>
-                <li class="custom-select-option" data-value="12:00 PM"><span>12:00 PM (Noon)</span><span class="option-check">&#10003;</span></li>
-                <li class="custom-select-option" data-value="02:00 PM"><span>2:00 PM</span><span class="option-check">&#10003;</span></li>
-                <li class="custom-select-option" data-value="04:00 PM"><span>4:00 PM</span><span class="option-check">&#10003;</span></li>
-                <li class="custom-select-option" data-value="05:30 PM"><span>5:30 PM</span><span class="option-check">&#10003;</span></li>
-                <li class="custom-select-option" data-value="06:30 PM"><span>6:30 PM</span><span class="option-check">&#10003;</span></li>
-                <li class="custom-select-option" data-value="07:30 PM"><span>7:30 PM</span><span class="option-check">&#10003;</span></li>
-                <li class="custom-select-option" data-value="Custom"><span>Custom / Flexible</span><span class="option-check">&#10003;</span></li>
-              </ul>
-              <input type="hidden" id="need-start-time" value="09:00 AM">
-            </div>
-          </div>
-          <div class="form-field">
-            <label id="lbl-duration">Hours (Estimated Duration):</label>
-            <div class="custom-select" data-id="need-duration">
-              <button type="button" class="custom-select-trigger" aria-haspopup="true" aria-expanded="false" aria-labelledby="lbl-duration">
-                <span class="custom-select-label">4 - 5 Hours (Half Day)</span>
-                <span class="custom-select-arrow" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-                </span>
-              </button>
-              <ul class="custom-select-menu">
-                <li class="custom-select-option" data-value="2-3 hours"><span>2 - 3 Hours</span><span class="option-check">&#10003;</span></li>
-                <li class="custom-select-option selected" data-value="4-5 hours"><span>4 - 5 Hours (Half Day)</span><span class="option-check">&#10003;</span></li>
-                <li class="custom-select-option" data-value="6-8 hours"><span>6 - 8 Hours (Full Day)</span><span class="option-check">&#10003;</span></li>
-                <li class="custom-select-option" data-value="Overnight"><span>Overnight Care</span><span class="option-check">&#10003;</span></li>
-                <li class="custom-select-option" data-value="Ongoing"><span>Ongoing / Full Time</span><span class="option-check">&#10003;</span></li>
-              </ul>
-              <input type="hidden" id="need-duration" value="4-5 hours">
-            </div>
-          </div>
-        </div>
-
-        <!-- Location (Australia) -->
+        <!-- Location (Town & Suburb) -->
         <div class="form-field">
-          <label for="need-location">Location: (Australia)</label>
-          <input type="text" id="need-location" required placeholder="e.g. Bondi 2026, NSW or South Yarra 3141, VIC" class="form-input">
+          <label for="need-location">LOCATION (TOWN & SUBURB)</label>
+          <input type="text" id="need-location" required placeholder="e.g Winchester, West Hill" class="form-input">
         </div>
 
         <!-- Anything else you feel we need to know -->
