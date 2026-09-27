@@ -293,10 +293,6 @@ document.addEventListener('DOMContentLoaded', () => {
               rangeEndDate = clickedDate;
               updateDateDisplay();
               renderCalendar(viewYear, viewMonth);
-              setTimeout(() => {
-                if (dateWrap) dateWrap.classList.remove('open');
-                if (dateTrigger) dateTrigger.setAttribute('aria-expanded', 'false');
-              }, 250);
             }
           }
         });
@@ -357,10 +353,15 @@ document.addEventListener('DOMContentLoaded', () => {
       viewMonth = now.getMonth();
       updateDateDisplay();
       renderCalendar(viewYear, viewMonth);
-      setTimeout(() => {
-        if (dateWrap) dateWrap.classList.remove('open');
-        if (dateTrigger) dateTrigger.setAttribute('aria-expanded', 'false');
-      }, 250);
+    });
+  }
+
+  const calDoneBtn = document.getElementById('cal-btn-done');
+  if (calDoneBtn) {
+    calDoneBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (dateWrap) dateWrap.classList.remove('open');
+      if (dateTrigger) dateTrigger.setAttribute('aria-expanded', 'false');
     });
   }
 
@@ -479,10 +480,6 @@ document.addEventListener('DOMContentLoaded', () => {
             timeEndIdx = idx;
             updateTimeDisplay();
             renderTimeSlots();
-            setTimeout(() => {
-              if (timeWrap) timeWrap.classList.remove('open');
-              if (timeTrigger) timeTrigger.setAttribute('aria-expanded', 'false');
-            }, 250);
           }
         }
       });
@@ -514,10 +511,6 @@ document.addEventListener('DOMContentLoaded', () => {
       timeEndIdx = 10;  // 5:00 PM
       updateTimeDisplay();
       renderTimeSlots();
-      setTimeout(() => {
-        if (timeWrap) timeWrap.classList.remove('open');
-        if (timeTrigger) timeTrigger.setAttribute('aria-expanded', 'false');
-      }, 250);
     });
   }
 
@@ -528,6 +521,15 @@ document.addEventListener('DOMContentLoaded', () => {
       timeEndIdx = null;
       updateTimeDisplay();
       renderTimeSlots();
+    });
+  }
+
+  const timeDoneBtn = document.getElementById('time-btn-done');
+  if (timeDoneBtn) {
+    timeDoneBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (timeWrap) timeWrap.classList.remove('open');
+      if (timeTrigger) timeTrigger.setAttribute('aria-expanded', 'false');
     });
   }
 
