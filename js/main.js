@@ -191,7 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (dateDisplayLabel) dateDisplayLabel.textContent = `${formatShortDate(rangeStartDate)} – ${formatShortDate(rangeEndDate)} (${diffDays} days)`;
         if (hiddenDateInput) hiddenDateInput.value = `${formatISO(rangeStartDate)} to ${formatISO(rangeEndDate)}`;
       }
-      if (calRangeHint) calRangeHint.textContent = 'Dates selected. Click any date to change range.';
+      if (calRangeHint) calRangeHint.textContent = 'Dates selected. Click any date to adjust end date.';
     } else if (rangeStartDate) {
       if (dateDisplayLabel) dateDisplayLabel.textContent = `${formatShortDate(rangeStartDate)} – Click end date`;
       if (hiddenDateInput) hiddenDateInput.value = formatISO(rangeStartDate);
@@ -275,26 +275,34 @@ document.addEventListener('DOMContentLoaded', () => {
           const clickedDate = new Date(year, month, d);
           clickedDate.setHours(0, 0, 0, 0);
 
-          if (!rangeStartDate || (rangeStartDate && rangeEndDate)) {
-            // First click: select start date
+          if (!rangeStartDate) {
+            // No start date: set start date
             rangeStartDate = clickedDate;
             rangeEndDate = null;
-            updateDateDisplay();
-            renderCalendar(viewYear, viewMonth);
           } else if (rangeStartDate && !rangeEndDate) {
-            // Second click: select end date
+            // Selecting end date
             if (clickedDate.getTime() < rangeStartDate.getTime()) {
-              // Clicked earlier date -> make it new start date
               rangeStartDate = clickedDate;
               rangeEndDate = null;
-              updateDateDisplay();
-              renderCalendar(viewYear, viewMonth);
             } else {
               rangeEndDate = clickedDate;
-              updateDateDisplay();
-              renderCalendar(viewYear, viewMonth);
+            }
+          } else if (rangeStartDate && rangeEndDate) {
+            // Both already selected:
+            // Clicking any date after start date adjusts the END DATE directly!
+            if (clickedDate.getTime() > rangeStartDate.getTime()) {
+              rangeEndDate = clickedDate;
+            } else if (clickedDate.getTime() === rangeStartDate.getTime()) {
+              rangeEndDate = rangeStartDate;
+            } else {
+              // Clicked earlier date: start a new range from this date
+              rangeStartDate = clickedDate;
+              rangeEndDate = null;
             }
           }
+
+          updateDateDisplay();
+          renderCalendar(viewYear, viewMonth);
         });
       }
 
@@ -410,7 +418,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (timeDisplayLabel) timeDisplayLabel.textContent = `${startSlot} – ${endSlot}${hrText}`;
         if (hiddenTimeInput) hiddenTimeInput.value = `${startSlot} - ${endSlot}`;
       }
-      if (timeRangeHint) timeRangeHint.textContent = 'Hours selected. Click any slot to change.';
+      if (timeRangeHint) timeRangeHint.textContent = 'Hours selected. Click any slot to adjust end hour.';
     } else if (timeStartIdx !== null) {
       const startSlot = TIME_SLOTS[timeStartIdx];
       if (timeDisplayLabel) timeDisplayLabel.textContent = `${startSlot} – Click end hour`;
@@ -463,25 +471,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
       slotBtn.addEventListener('click', (e) => {
         e.stopPropagation();
-        if (timeStartIdx === null || (timeStartIdx !== null && timeEndIdx !== null)) {
+        if (timeStartIdx === null) {
           // 1st click
           timeStartIdx = idx;
           timeEndIdx = null;
-          updateTimeDisplay();
-          renderTimeSlots();
         } else if (timeStartIdx !== null && timeEndIdx === null) {
           // 2nd click
           if (idx < timeStartIdx) {
             timeStartIdx = idx;
             timeEndIdx = null;
-            updateTimeDisplay();
-            renderTimeSlots();
           } else {
             timeEndIdx = idx;
-            updateTimeDisplay();
-            renderTimeSlots();
+          }
+        } else if (timeStartIdx !== null && timeEndIdx !== null) {
+          // Both already selected:
+          // Clicking any slot after start time adjusts the END HOUR directly!
+          if (idx > timeStartIdx) {
+            timeEndIdx = idx;
+          } else if (idx === timeStartIdx) {
+            timeEndIdx = timeStartIdx;
+          } else {
+            // Clicked earlier slot: start new selection from this hour
+            timeStartIdx = idx;
+            timeEndIdx = null;
           }
         }
+        updateTimeDisplay();
+        renderTimeSlots();
       });
 
       timeSlotsGrid.appendChild(slotBtn);
