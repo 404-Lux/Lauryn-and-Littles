@@ -24,8 +24,9 @@
   --color-blush-soft: #fcf4f2;
   --color-blush-border: #f4d0c9;
 
-  --color-wall-portrait: #e9e1d7;
-  --color-wall-landscape: #e4dbd0;
+  --color-wall-portrait: #f7f2ea;
+  --color-wall-landscape: #f7f2ea;
+  --color-header-bg: rgba(247, 242, 234, 0.94);
 
   /* Typography */
   --font-serif: 'Cormorant Garamond', Georgia, serif;
@@ -119,18 +120,16 @@ ul {
   left: 0;
   width: 100%;
   z-index: 100;
-  background-color: transparent;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-  border-bottom: 1px solid transparent;
-  box-shadow: none;
-  transition: background-color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease, backdrop-filter 0.35s ease, -webkit-backdrop-filter 0.35s ease;
+  background-color: var(--color-header-bg);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(67, 85, 72, 0.06);
+  box-shadow: 0 2px 14px rgba(50, 60, 52, 0.04);
+  transition: background-color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
 }
 
 .site-header.scrolled {
-  background-color: rgba(246, 241, 234, 0.96);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background-color: rgba(247, 242, 234, 0.98);
   border-bottom: 1px solid rgba(67, 85, 72, 0.09);
   box-shadow: 0 4px 20px rgba(50, 60, 52, 0.08);
 }
@@ -242,7 +241,7 @@ ul {
   align-items: center;
   justify-content: flex-start;
   background-color: var(--color-wall-portrait);
-  background-image: url('../images/bg_portrait.png');
+  background-image: linear-gradient(180deg, rgba(255, 252, 247, 0.22) 0%, rgba(255, 255, 255, 0) 35%), url('../images/bg_portrait.png');
   background-repeat: no-repeat;
   background-position: center top;
   background-size: cover;
@@ -1640,11 +1639,11 @@ ul {
     padding-left: 0;
   }
 
-  /* Full desktop hero without artificial bright light */
+  /* Full desktop hero with bright sunlit warmth matching the image */
   .hero-section {
     aspect-ratio: auto;
     background-color: var(--color-wall-landscape);
-    background-image: url('../images/bg_landscape.png');
+    background-image: linear-gradient(to right, rgba(255, 253, 249, 0.35) 0%, rgba(255, 252, 247, 0.20) 45%, rgba(255, 255, 255, 0) 75%), url('../images/bg_landscape.png');
     background-repeat: no-repeat;
     background-position: right bottom;
     background-size: cover;
@@ -1665,13 +1664,13 @@ ul {
     align-items: flex-start;
   }
 
-  /* Enlarge hero-content inside hero section */
+  /* Refined, balanced hero-content inside hero section */
   .hero-content {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    max-width: 620px;
+    max-width: 470px;
     margin: 0;
   }
 
@@ -1680,12 +1679,12 @@ ul {
     justify-content: center;
     width: 100%;
     margin-left: 0;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
   }
 
   .hero-heart-badge .heart-svg {
-    width: 32px;
-    height: 32px;
+    width: 24px;
+    height: 24px;
   }
 
   .hero-headline {
@@ -1694,18 +1693,18 @@ ul {
     align-items: center;
     text-align: center;
     width: 100%;
-    margin-bottom: 28px;
+    margin-bottom: 20px;
   }
 
   .script-line {
     font-family: 'Brittany Signature', var(--font-script);
-    font-size: clamp(4.8rem, 6.2vw, 5.8rem);
+    font-size: clamp(3.2rem, 4.2vw, 3.9rem);
     font-weight: 400;
     font-style: normal;
     color: #314236;
     text-align: center;
     transform: none;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
     letter-spacing: normal;
     line-height: 1.2;
     text-rendering: optimizeLegibility;
@@ -1720,7 +1719,7 @@ ul {
 
   .serif-line {
     font-family: var(--font-headline-serif);
-    font-size: 4.15rem;
+    font-size: clamp(2.15rem, 2.7vw, 2.65rem);
     font-weight: 400;
     color: #314236;
     text-align: center;
@@ -1735,15 +1734,15 @@ ul {
     display: flex;
     justify-content: center;
     width: 100%;
-    margin-bottom: 28px;
-    gap: 16px;
+    margin-bottom: 20px;
+    gap: 12px;
   }
 
   .btn-hero-primary, .btn-hero-secondary {
-    font-size: 1.08rem;
+    font-size: 0.98rem;
     font-weight: 500;
-    padding: 15px 34px;
-    box-shadow: 0 6px 18px rgba(40, 56, 45, 0.22);
+    padding: 12px 26px;
+    box-shadow: 0 4px 14px rgba(40, 56, 45, 0.18);
   }
 
   .btn-hero-primary .btn-arrow,
@@ -1830,8 +1829,8 @@ ul {
 
   .hero-wrapper {
     padding-left: clamp(60px, 8vw, 130px);
-    padding-top: 50px;
-    padding-bottom: 50px;
+    padding-top: clamp(85px, 11vh, 120px);
+    padding-bottom: 45px;
   }
 
   .hero-section {
@@ -1842,24 +1841,24 @@ ul {
   }
 
   .hero-content {
-    max-width: 680px;
+    max-width: 480px;
   }
 
   .script-line {
-    font-size: 5.8rem;
+    font-size: 4.1rem;
   }
 
   .serif-line {
-    font-size: 4.25rem;
+    font-size: 2.85rem;
   }
 
   .btn-hero-primary, .btn-hero-secondary {
-    font-size: 1.18rem;
-    padding: 16px 38px;
+    font-size: 1.02rem;
+    padding: 13px 28px;
   }
 
   .hero-divider {
-    max-width: 290px;
+    max-width: 240px;
   }
 }
 
