@@ -398,9 +398,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  // 4. Header Scroll Transparency Effect
+  // 4. Header Scroll Transparency Effect (Hero Page only)
   const siteHeader = document.getElementById('site-header');
-  if (siteHeader) {
+  const isLegalPage = document.body.classList.contains('legal-page-body');
+  if (siteHeader && !isLegalPage) {
     const handleHeaderScroll = () => {
       if (window.scrollY > 20) {
         siteHeader.classList.add('scrolled');
@@ -411,5 +412,24 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', handleHeaderScroll, { passive: true });
     handleHeaderScroll(); // Check on initial page load
   }
+
+  // 5. Scroll Entrance Reveal for Footer (Across All Pages)
+  const siteFooter = document.querySelector('.site-footer');
+  if (siteFooter) {
+    if ('IntersectionObserver' in window) {
+      const footerObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            siteFooter.classList.add('footer-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px 40px 0px' });
+      footerObserver.observe(siteFooter);
+    } else {
+      siteFooter.classList.add('footer-visible');
+    }
+  }
 });
+
 

@@ -444,21 +444,139 @@ ul {
   animation: luxuryFadeIn 0.85s ease 0.7s backwards;
 }
 
-/* Legal Pages Staggered Entrance */
-.legal-nav-bar {
-  animation: luxuryFadeInDown 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.1s backwards;
+/* ==========================================================================
+   FOOTER ENTRANCE / SCROLL REVEAL TRANSITION
+   ========================================================================== */
+
+.site-footer {
+  overflow: hidden;
 }
 
-.legal-header-hero {
-  animation: luxuryFadeInUp 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.2s backwards;
+.site-footer .footer-social-wrap {
+  opacity: 0;
+  transform: translateY(24px) scale(0.94);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.legal-card {
-  animation: luxuryFadeInUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.35s backwards;
+.site-footer .footer-copyright {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.15s, transform 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.15s;
 }
 
-.legal-bottom-actions {
-  animation: luxuryFadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.5s backwards;
+.site-footer .footer-legal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.28s, transform 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.28s;
+}
+
+/* Activated when scrolled into view */
+.site-footer.footer-visible .footer-social-wrap,
+.site-footer.footer-visible .footer-copyright,
+.site-footer.footer-visible .footer-legal {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* ==========================================================================
+   LEGAL PAGES ENTRANCE TRANSITIONS (Privacy Policy & Terms of Service)
+   ========================================================================== */
+
+@keyframes legalPageEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes legalCardEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(45px) scale(0.982);
+    box-shadow: 0 4px 14px rgba(50, 60, 52, 0.02);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    box-shadow: 0 16px 44px rgba(50, 60, 52, 0.08);
+  }
+}
+
+@keyframes heartPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  55% {
+    transform: scale(1.28);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes sectionSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.legal-page-body .legal-page-main {
+  animation: legalPageEntrance 0.75s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
+.legal-page-body .legal-nav-bar {
+  animation: luxuryFadeInDown 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.1s backwards;
+}
+
+.legal-page-body .legal-heart-accent {
+  animation: heartPop 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.2s backwards;
+}
+
+.legal-page-body .legal-title {
+  animation: luxuryFadeInUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.28s backwards;
+}
+
+.legal-page-body .legal-updated {
+  animation: luxuryFadeInUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.36s backwards;
+}
+
+.legal-page-body .legal-intro {
+  animation: luxuryFadeInUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.44s backwards;
+}
+
+.legal-page-body .legal-card {
+  animation: legalCardEntrance 1s cubic-bezier(0.16, 1, 0.3, 1) 0.5s backwards;
+}
+
+.legal-page-body .legal-callout {
+  animation: sectionSlideIn 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.65s backwards;
+}
+
+.legal-page-body .legal-section:nth-of-type(1) {
+  animation: sectionSlideIn 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.72s backwards;
+}
+
+.legal-page-body .legal-section:nth-of-type(2) {
+  animation: sectionSlideIn 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.8s backwards;
+}
+
+.legal-page-body .legal-section:nth-of-type(3) {
+  animation: sectionSlideIn 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.88s backwards;
+}
+
+.legal-page-body .legal-bottom-actions {
+  animation: luxuryFadeInUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.95s backwards;
 }
 
 /* Accessibility: Respect Reduced Motion Preference */
@@ -469,12 +587,22 @@ ul {
   .btn-hero-primary,
   .btn-hero-secondary,
   .hero-divider,
+  .legal-page-main,
   .legal-nav-bar,
-  .legal-header-hero,
+  .legal-heart-accent,
+  .legal-title,
+  .legal-updated,
+  .legal-intro,
   .legal-card,
+  .legal-callout,
+  .legal-section,
   .legal-bottom-actions,
-  .heart-svg {
+  .heart-svg,
+  .site-footer .footer-social-wrap,
+  .site-footer .footer-copyright,
+  .site-footer .footer-legal {
     animation: none !important;
+    transition: none !important;
     transform: none !important;
     opacity: 1 !important;
   }
