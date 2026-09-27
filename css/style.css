@@ -1600,10 +1600,10 @@ ul {
 
   .hero-section {
     width: 100%;
-    min-height: 97vh;
-    min-height: 97dvh;
-    height: 97vh;
-    height: 97dvh;
+    min-height: 96vh;
+    min-height: 96dvh;
+    height: 96vh;
+    height: 96dvh;
     aspect-ratio: unset;
     background-color: var(--color-wall-portrait);
     background-image: linear-gradient(180deg, rgba(255, 252, 247, 0.22) 0%, rgba(255, 255, 255, 0) 35%), url('../images/bg_portrait.png');
