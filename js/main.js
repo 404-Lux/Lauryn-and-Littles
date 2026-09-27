@@ -156,8 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const dayNamesShort = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
   let currentDate = new Date();
-  let rangeStartDate = new Date();
-  rangeStartDate.setHours(0, 0, 0, 0);
+  let rangeStartDate = null;
   let rangeEndDate = null;
   let viewYear = currentDate.getFullYear();
   let viewMonth = currentDate.getMonth();
@@ -199,7 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       if (dateDisplayLabel) dateDisplayLabel.textContent = 'Select Dates';
       if (hiddenDateInput) hiddenDateInput.value = '';
-      if (calRangeHint) calRangeHint.textContent = 'Click twice for start & end dates';
+      if (calRangeHint) calRangeHint.textContent = 'Step 1: Click start date';
     }
   };
 
@@ -402,8 +401,8 @@ document.addEventListener('DOMContentLoaded', () => {
     '10:00 PM', '11:00 PM', 'Overnight'
   ];
 
-  let timeStartIdx = 2; // '9:00 AM'
-  let timeEndIdx = 7;   // '2:00 PM'
+  let timeStartIdx = null;
+  let timeEndIdx = null;
 
   const updateTimeDisplay = () => {
     if (timeStartIdx !== null && timeEndIdx !== null) {
@@ -427,7 +426,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       if (timeDisplayLabel) timeDisplayLabel.textContent = 'Select Hours';
       if (hiddenTimeInput) hiddenTimeInput.value = '';
-      if (timeRangeHint) timeRangeHint.textContent = 'Click twice for start & end hours';
+      if (timeRangeHint) timeRangeHint.textContent = 'Step 1: Click start hour';
     }
   };
 
@@ -626,13 +625,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (form) form.reset();
 
     // Re-default date range and hours range after form reset
-    rangeStartDate = new Date();
-    rangeStartDate.setHours(0, 0, 0, 0);
+    rangeStartDate = null;
     rangeEndDate = null;
     updateDateDisplay();
 
-    timeStartIdx = 2; // 9:00 AM
-    timeEndIdx = 7;   // 2:00 PM
+    timeStartIdx = null;
+    timeEndIdx = null;
     updateTimeDisplay();
   };
 
