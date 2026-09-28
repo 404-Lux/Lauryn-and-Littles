@@ -134,86 +134,19 @@
         <!-- Input for: Be specific on what you need (Flexible Textarea) -->
         <div class="form-field">
           <label for="specific-need">Be specific on what you need:</label>
-          <textarea id="specific-need" rows="3" required placeholder="e.g. Someone to watch two toddlers, To look after kids while I work from home" class="form-textarea"></textarea>
-        </div>
-
-        <!-- Dates & Hours Range Pickers (Hotel-Style 2-Click Range Selection) -->
-        <div class="form-row">
-          <div class="form-field">
-            <label for="date-picker-trigger">Dates:</label>
-            <div class="custom-date-wrap" id="custom-date-picker">
-              <button type="button" class="custom-date-trigger" id="date-picker-trigger" aria-haspopup="dialog" aria-expanded="false">
-                <span id="date-display-label">Select Dates</span>
-                <span class="custom-date-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-                    <line x1="16" y1="2" x2="16" y2="6"/>
-                    <line x1="8" y1="2" x2="8" y2="6"/>
-                    <line x1="3" y1="10" x2="21" y2="10"/>
-                  </svg>
-                </span>
-              </button>
-              <div class="custom-calendar-popup" id="custom-calendar-popup">
-                <div class="calendar-header">
-                  <button type="button" class="calendar-nav-btn" id="cal-prev-month" aria-label="Previous month">&larr;</button>
-                  <div class="calendar-month-year" id="cal-month-year">September 2026</div>
-                  <button type="button" class="calendar-nav-btn" id="cal-next-month" aria-label="Next month">&rarr;</button>
-                </div>
-                <div class="range-helper-hint" id="cal-range-hint">Click twice for start &amp; end dates</div>
-                <div class="calendar-weekdays">
-                  <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
-                </div>
-                <div class="calendar-days" id="cal-days-grid">
-                  <!-- Rendered dynamically -->
-                </div>
-                <div class="calendar-footer">
-                  <button type="button" class="calendar-btn-text" id="cal-btn-today">Today</button>
-                  <button type="button" class="calendar-btn-text" id="cal-btn-clear">Reset</button>
-                  <button type="button" class="calendar-btn-done" id="cal-btn-done">Done &check;</button>
-                </div>
-              </div>
-              <input type="hidden" id="need-date-picker" name="date" value="">
-            </div>
-          </div>
-
-          <div class="form-field">
-            <label id="lbl-hours">Hours:</label>
-            <div class="custom-time-wrap" id="custom-time-picker">
-              <button type="button" class="custom-date-trigger" id="hours-picker-trigger" aria-haspopup="dialog" aria-expanded="false" aria-labelledby="lbl-hours">
-                <span id="hours-display-label">Select Hours</span>
-                <span class="custom-date-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <polyline points="12 6 12 12 16 14"></polyline>
-                  </svg>
-                </span>
-              </button>
-              <div class="custom-time-popup" id="custom-time-popup">
-                <div class="range-helper-hint" id="time-range-hint">Click twice for start &amp; end hours</div>
-                <div class="time-slots-grid" id="time-slots-grid">
-                  <!-- Rendered dynamically -->
-                </div>
-                <div class="calendar-footer">
-                  <button type="button" class="calendar-btn-text" id="time-btn-all-day">Full Day</button>
-                  <button type="button" class="calendar-btn-text" id="time-btn-reset">Reset</button>
-                  <button type="button" class="calendar-btn-done" id="time-btn-done">Done &check;</button>
-                </div>
-              </div>
-              <input type="hidden" id="need-start-time" name="hours" value="">
-            </div>
-          </div>
+          <textarea id="specific-need" rows="3" required placeholder="e.g. Dates, Hours, Children's ages, Duties, etc." class="form-textarea"></textarea>
         </div>
 
         <!-- Location (Town & Suburb) -->
         <div class="form-field">
           <label for="need-location">LOCATION (TOWN &amp; SUBURB)</label>
-          <input type="text" id="need-location" required placeholder="e.g Winchester, West Hill" class="form-input">
+          <input type="text" id="need-location" required placeholder="e.g. Winchester, West Hill" class="form-input">
         </div>
 
         <!-- Anything else you feel we need to know -->
         <div class="form-field">
           <label for="need-details">Anything else you feel we need to know:</label>
-          <textarea id="need-details" rows="3" placeholder="e.g. medical, routines, pet, parking" class="form-textarea"></textarea>
+          <textarea id="need-details" rows="3" placeholder="e.g. medical conditions, routines, pets, parking, etc." class="form-textarea"></textarea>
         </div>
 
         <!-- Contact Information -->

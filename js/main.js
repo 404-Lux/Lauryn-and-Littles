@@ -197,6 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const updateDateDisplay = () => {
+    if (!dateDisplayLabel) return;
     if (rangeStartDate && rangeEndDate) {
       if (rangeStartDate.getTime() === rangeEndDate.getTime()) {
         if (dateDisplayLabel) dateDisplayLabel.textContent = `${formatShortDate(rangeStartDate)} (1 day)`;
@@ -422,6 +423,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let timeEndIdx = null;
 
   const updateTimeDisplay = () => {
+    if (!timeDisplayLabel) return;
     if (timeStartIdx !== null && timeEndIdx !== null) {
       const startSlot = TIME_SLOTS[timeStartIdx];
       const endSlot = TIME_SLOTS[timeEndIdx];
