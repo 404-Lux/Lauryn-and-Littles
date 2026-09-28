@@ -962,42 +962,45 @@ ul {
   margin-bottom: 16px;
 }
 
-/* Sitter Waiting List Note (Natural text inside modal-container, not in a card) */
+/* Sitter Waiting List Note (Spacious, clean, editorial layout) */
 .waiting-list-note {
   background: transparent;
   border: none;
   border-radius: 0;
-  padding: 0 2px;
-  color: #3e4d43;
+  padding: 6px 0 0 0;
+  color: #3b493f;
   font-family: var(--font-sans);
-  font-size: 0.94rem;
-  line-height: 1.6;
-  margin-bottom: 6px;
+  font-size: 0.96rem;
+  line-height: 1.65;
+  margin-bottom: 24px;
 }
 
 .waiting-list-note p {
-  margin: 0 0 10px 0;
+  margin: 0 0 18px 0;
 }
 
-.waiting-list-note p:last-child {
-  margin-bottom: 0;
+.waiting-list-note p:last-of-type {
+  margin-bottom: 22px;
 }
 
 .waiting-list-signature {
-  font-style: italic;
-  color: #4a5c52;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: #3b493f;
+  font-family: var(--font-sans);
+  font-size: 0.96rem;
   line-height: 1.4;
-  margin-top: 6px;
+  margin-top: 4px;
 }
 
-.waiting-list-signature strong {
-  font-family: var(--font-serif);
-  font-size: 1.18rem;
-  font-style: normal;
-  font-weight: 600;
-  color: #4a5c52;
-  display: inline-block;
-  margin-top: 2px;
+.waiting-list-signature .sig-regards {
+  color: #3b493f;
+}
+
+.waiting-list-signature .sig-name {
+  color: #3b493f;
+  font-weight: 500;
 }
 
 .quote-tips-title {
@@ -1839,9 +1842,23 @@ ul {
   }
 
   .waiting-list-note {
-    padding: 0 2px;
-    font-size: 0.90rem;
-    line-height: 1.5;
+    padding: 4px 0 0 0;
+    font-size: 0.92rem;
+    line-height: 1.58;
+    margin-bottom: 20px;
+  }
+
+  .waiting-list-note p {
+    margin: 0 0 14px 0;
+  }
+
+  .waiting-list-note p:last-of-type {
+    margin-bottom: 16px;
+  }
+
+  .waiting-list-signature {
+    gap: 8px;
+    font-size: 0.92rem;
   }
 
   .modal-form {
