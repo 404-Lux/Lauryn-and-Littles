@@ -8,21 +8,38 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalCloseBtn = document.getElementById('modal-close-btn');
   const roleFamilyBtn = document.getElementById('role-family-btn');
   const roleSitterBtn = document.getElementById('role-sitter-btn');
+  const modalTitle = document.getElementById('modal-title');
+  const requestForm = document.getElementById('request-form');
+  const waitingListForm = document.getElementById('waiting-list-form');
   const requestTypeInput = document.getElementById('request-type');
 
   window.setRole = (role) => {
     if (role === 'sitter') {
-      if (roleFamilyBtn) roleFamilyBtn.classList.remove('active');
-      if (roleSitterBtn) roleSitterBtn.classList.add('active');
-      if (roleFamilyBtn) roleFamilyBtn.setAttribute('aria-selected', 'false');
-      if (roleSitterBtn) roleSitterBtn.setAttribute('aria-selected', 'true');
+      if (roleFamilyBtn) {
+        roleFamilyBtn.classList.remove('active');
+        roleFamilyBtn.setAttribute('aria-selected', 'false');
+      }
+      if (roleSitterBtn) {
+        roleSitterBtn.classList.add('active');
+        roleSitterBtn.setAttribute('aria-selected', 'true');
+      }
       if (requestTypeInput) requestTypeInput.value = 'Sitter looking for a Family';
+      if (modalTitle) modalTitle.textContent = 'JOIN OUR WAITING LIST';
+      if (requestForm) requestForm.style.display = 'none';
+      if (waitingListForm) waitingListForm.style.display = 'flex';
     } else {
-      if (roleSitterBtn) roleSitterBtn.classList.remove('active');
-      if (roleFamilyBtn) roleFamilyBtn.classList.add('active');
-      if (roleSitterBtn) roleSitterBtn.setAttribute('aria-selected', 'false');
-      if (roleFamilyBtn) roleFamilyBtn.setAttribute('aria-selected', 'true');
+      if (roleSitterBtn) {
+        roleSitterBtn.classList.remove('active');
+        roleSitterBtn.setAttribute('aria-selected', 'false');
+      }
+      if (roleFamilyBtn) {
+        roleFamilyBtn.classList.add('active');
+        roleFamilyBtn.setAttribute('aria-selected', 'true');
+      }
       if (requestTypeInput) requestTypeInput.value = 'Family needing a Sitter';
+      if (modalTitle) modalTitle.textContent = 'Tell us what you need';
+      if (waitingListForm) waitingListForm.style.display = 'none';
+      if (requestForm) requestForm.style.display = 'flex';
     }
   };
 
@@ -632,6 +649,40 @@ document.addEventListener('DOMContentLoaded', () => {
     timeStartIdx = null;
     timeEndIdx = null;
     updateTimeDisplay();
+  };
+
+  window.submitWaitingList = async () => {
+    const fullName = document.getElementById('waiting-name')?.value || 'there';
+    const email = document.getElementById('waiting-email')?.value || '';
+    const phone = document.getElementById('waiting-phone')?.value || '';
+    const city = document.getElementById('waiting-city')?.value || '';
+
+    const payload = {
+      role: 'Sitter looking for a Family (Waiting List)',
+      fullName: fullName,
+      email: email,
+      phone: phone,
+      city: city,
+      submittedAt: new Date().toLocaleString('en-AU', { timeZone: 'Australia/Sydney' })
+    };
+
+    if (GOOGLE_SHEETS_WEBHOOK_URL) {
+      try {
+        await fetch(GOOGLE_SHEETS_WEBHOOK_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+      } catch (err) {
+        console.warn('Google Sheets dispatch notice:', err);
+      }
+    }
+
+    window.closeRequestModal();
+    window.showToast(`Thank you, ${fullName}! You’ve been added to our waiting list.`);
+    const waitingForm = document.getElementById('waiting-list-form');
+    if (waitingForm) waitingForm.reset();
   };
 
   // 4. Header Scroll Transparency Effect (Hero Page only)

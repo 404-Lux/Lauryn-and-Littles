@@ -240,6 +240,43 @@
           </button>
         </div>
       </form>
+
+      <!-- Sitter Waiting List Form (I'm looking for a Family) -->
+      <form class="modal-form" id="waiting-list-form" style="display: none;" onsubmit="event.preventDefault(); window.submitWaitingList();">
+        <div class="waiting-list-note">
+          <p>If you love children and would like to be part of Lauryn and Littles, fill in the details below to join our waiting list.</p>
+          <p>I’ll reach out as soon as possible.</p>
+          <p class="waiting-list-signature">Warm Regards<br><strong>Lauryn</strong></p>
+        </div>
+
+        <div class="form-field">
+          <label for="waiting-name">Full Name</label>
+          <input type="text" id="waiting-name" required placeholder="e.g. Bert Higgins" class="form-input">
+        </div>
+
+        <div class="form-field">
+          <label for="waiting-email">Email</label>
+          <input type="email" id="waiting-email" required placeholder="robert.greene@gmail.com" class="form-input">
+        </div>
+
+        <div class="form-row">
+          <div class="form-field">
+            <label for="waiting-phone">Phone Number</label>
+            <input type="tel" id="waiting-phone" required placeholder="07704 911930" class="form-input">
+          </div>
+          <div class="form-field">
+            <label for="waiting-city">City</label>
+            <input type="text" id="waiting-city" required placeholder="e.g. Winchester" class="form-input">
+          </div>
+        </div>
+
+        <div class="modal-submit-wrap">
+          <button type="submit" class="btn-hero-primary full-width" id="submit-waiting-btn">
+            <span>Join the waiting list</span>
+            <span class="btn-arrow">&rarr;</span>
+          </button>
+        </div>
+      </form>
     </div>
   </div>
 

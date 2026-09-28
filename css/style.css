@@ -962,6 +962,44 @@ ul {
   margin-bottom: 16px;
 }
 
+/* Sitter Waiting List Note Card */
+.waiting-list-note {
+  background: #fbf7f2;
+  border: 1px solid rgba(229, 171, 160, 0.45);
+  border-left: 3px solid #e5aba0;
+  border-radius: 14px;
+  padding: 16px 18px;
+  color: #3e4d43;
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  line-height: 1.55;
+  margin-bottom: 4px;
+}
+
+.waiting-list-note p {
+  margin: 0 0 10px 0;
+}
+
+.waiting-list-note p:last-child {
+  margin-bottom: 0;
+}
+
+.waiting-list-signature {
+  font-style: italic;
+  color: #4a5c52;
+  line-height: 1.4;
+}
+
+.waiting-list-signature strong {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-style: normal;
+  font-weight: 600;
+  color: #4a5c52;
+  display: inline-block;
+  margin-top: 2px;
+}
+
 .quote-tips-title {
   display: flex;
   align-items: center;
@@ -1727,6 +1765,12 @@ ul {
   .quote-tips-list {
     font-size: 0.78rem;
     gap: 5px;
+  }
+
+  .waiting-list-note {
+    padding: 13px 14px;
+    font-size: 0.88rem;
+    line-height: 1.48;
   }
 
   .modal-form {
