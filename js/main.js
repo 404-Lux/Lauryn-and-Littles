@@ -599,6 +599,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const NOTIFICATION_EMAIL = '';        // TODO: Paste client's notification email here
 
   window.submitRequest = async () => {
+    const agreeTerms = document.getElementById('agree-terms-family');
+    if (agreeTerms && !agreeTerms.checked) {
+      window.showToast("Please agree to the Terms of Service and Privacy Policy to proceed.", "ℹ");
+      agreeTerms.focus();
+      return;
+    }
+
     const roleType = requestTypeInput ? requestTypeInput.value : 'Family needing a Sitter';
     const clientName = document.getElementById('client-name')?.value || 'there';
     const clientPhone = document.getElementById('client-phone')?.value || '';
@@ -619,7 +626,7 @@ document.addEventListener('DOMContentLoaded', () => {
       hours: hoursNeeded,
       location: location,
       notes: additionalNotes,
-      submittedAt: new Date().toLocaleString('en-AU', { timeZone: 'Australia/Sydney' })
+      submittedAt: new Date().toLocaleString('en-GB', { timeZone: 'Europe/London' })
     };
 
     // If Google Sheets webhook is configured, dispatch the entry
@@ -652,6 +659,13 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   window.submitWaitingList = async () => {
+    const agreeTerms = document.getElementById('agree-terms-sitter');
+    if (agreeTerms && !agreeTerms.checked) {
+      window.showToast("Please agree to the Terms of Service and Privacy Policy to proceed.", "ℹ");
+      agreeTerms.focus();
+      return;
+    }
+
     const fullName = document.getElementById('waiting-name')?.value || 'there';
     const email = document.getElementById('waiting-email')?.value || '';
     const phone = document.getElementById('waiting-phone')?.value || '';
@@ -663,7 +677,7 @@ document.addEventListener('DOMContentLoaded', () => {
       email: email,
       phone: phone,
       city: city,
-      submittedAt: new Date().toLocaleString('en-AU', { timeZone: 'Australia/Sydney' })
+      submittedAt: new Date().toLocaleString('en-GB', { timeZone: 'Europe/London' })
     };
 
     if (GOOGLE_SHEETS_WEBHOOK_URL) {
