@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
         roleSitterBtn.setAttribute('aria-selected', 'true');
       }
       if (requestTypeInput) requestTypeInput.value = 'Sitter looking for a Family';
-      if (modalTitle) modalTitle.textContent = 'JOIN OUR WAITING LIST';
+      if (modalTitle) modalTitle.textContent = 'Join our waiting list';
       if (requestForm) requestForm.style.display = 'none';
       if (waitingListForm) waitingListForm.style.display = 'flex';
     } else {
