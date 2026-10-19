@@ -253,7 +253,7 @@ ul {
   background-color: var(--color-wall-portrait);
   background-image: url('../images/1000054756.jpg');
   background-repeat: no-repeat;
-  background-position: center 32%;
+  background-position: center 48%;
   background-size: cover;
   overflow: hidden;
 }
@@ -1744,7 +1744,7 @@ ul {
     background-color: var(--color-wall-portrait);
     background-image: url('../images/1000054756.jpg');
     background-repeat: no-repeat;
-    background-position: center 32%;
+    background-position: center 48%;
     background-size: cover;
     display: flex;
     flex-direction: column;
