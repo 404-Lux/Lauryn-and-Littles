@@ -241,10 +241,10 @@ ul {
 .hero-section {
   position: relative;
   width: 100%;
-  min-height: 100vh;
-  min-height: 100dvh;
-  height: 100vh;
-  height: 100dvh;
+  min-height: 101vh;
+  min-height: 101dvh;
+  height: 101vh;
+  height: 101dvh;
   aspect-ratio: unset;
   display: flex;
   flex-direction: column;
@@ -253,7 +253,7 @@ ul {
   background-color: var(--color-wall-portrait);
   background-image: url('../images/1000054756.jpg');
   background-repeat: no-repeat;
-  background-position: center 81%;
+  background-position: center 83%;
   background-size: cover;
   overflow: hidden;
 }
@@ -1736,15 +1736,15 @@ ul {
 
   .hero-section {
     width: 100%;
-    min-height: 103vh;
-    min-height: 103dvh;
-    height: 103vh;
-    height: 103dvh;
+    min-height: 101vh;
+    min-height: 101dvh;
+    height: 101vh;
+    height: 101dvh;
     aspect-ratio: unset;
     background-color: var(--color-wall-portrait);
     background-image: url('../images/1000054756.jpg');
     background-repeat: no-repeat;
-    background-position: center 81%;
+    background-position: center 83%;
     background-size: cover;
     display: flex;
     flex-direction: column;
