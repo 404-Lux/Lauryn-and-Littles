@@ -244,14 +244,14 @@ ul {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  background-color: var(--color-wall-portrait);
+  background-color: transparent;
   background-image: linear-gradient(
     180deg,
-    #f7f2ea 0%,
-    #f7f2ea 20%,
-    rgba(247, 242, 234, 0.96) 23%,
-    rgba(247, 242, 234, 0.70) 26%,
-    rgba(247, 242, 234, 0.25) 29%,
+    rgba(247, 242, 234, 0.96) 0%,
+    rgba(247, 242, 234, 0.96) 20%,
+    rgba(247, 242, 234, 0.85) 23%,
+    rgba(247, 242, 234, 0.55) 26%,
+    rgba(247, 242, 234, 0.20) 29%,
     transparent 31%
   ), url('../images/1000054756.jpg');
   background-repeat: no-repeat;
@@ -1741,14 +1741,14 @@ ul {
     height: 101vh;
     height: 101dvh;
     aspect-ratio: unset;
-    background-color: var(--color-wall-portrait);
+    background-color: transparent;
     background-image: linear-gradient(
       180deg,
-      #f7f2ea 0%,
-      #f7f2ea 20%,
-      rgba(247, 242, 234, 0.96) 23%,
-      rgba(247, 242, 234, 0.70) 26%,
-      rgba(247, 242, 234, 0.25) 29%,
+      rgba(247, 242, 234, 0.96) 0%,
+      rgba(247, 242, 234, 0.96) 20%,
+      rgba(247, 242, 234, 0.85) 23%,
+      rgba(247, 242, 234, 0.55) 26%,
+      rgba(247, 242, 234, 0.20) 29%,
       transparent 31%
     ), url('../images/1000054756.jpg');
     background-repeat: no-repeat;
