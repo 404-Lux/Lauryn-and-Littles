@@ -4,17 +4,9 @@
    Same style and html as index.html, with 1000054772.jpg as background image
    ========================================================================== */
 
-/* Mobile / Portrait Hero Background with Warm Cream Header Gradient */
+/* Mobile / Portrait Hero Background (No cream shadow/gradient overlay) */
 .hero-section {
-  background-image: linear-gradient(
-    180deg,
-    rgba(247, 242, 234, 0.96) 0%,
-    rgba(247, 242, 234, 0.96) 29%,
-    rgba(247, 242, 234, 0.92) 34%,
-    rgba(247, 242, 234, 0.70) 38%,
-    rgba(247, 242, 234, 0.30) 41.5%,
-    transparent 44%
-  ), url('../images/1000054772.jpg') !important;
+  background-image: url('../images/1000054772.jpg') !important;
   background-repeat: no-repeat !important;
   background-position: center 30% !important;
   background-size: cover !important;
@@ -23,14 +15,7 @@
 /* Tablet Media Query (768px - 991px) */
 @media (min-width: 768px) and (max-width: 991px) {
   .hero-section {
-    background-image: linear-gradient(
-      180deg,
-      rgba(247, 242, 234, 0.96) 0%,
-      rgba(247, 242, 234, 0.96) 30%,
-      rgba(247, 242, 234, 0.88) 36%,
-      rgba(247, 242, 234, 0.50) 42%,
-      transparent 48%
-    ), url('../images/1000054772.jpg') !important;
+    background-image: url('../images/1000054772.jpg') !important;
     background-position: center 26% !important;
     background-size: cover !important;
   }
@@ -40,16 +25,9 @@
 @media (min-width: 992px) {
   .hero-section {
     aspect-ratio: auto;
-    background-image: linear-gradient(
-      90deg,
-      rgba(247, 242, 234, 0.96) 0%,
-      rgba(247, 242, 234, 0.94) 38%,
-      rgba(247, 242, 234, 0.70) 48%,
-      rgba(247, 242, 234, 0.20) 60%,
-      transparent 72%
-    ), url('../images/1000054772.jpg') !important;
+    background-image: url('../images/1000054772.jpg') !important;
     background-repeat: no-repeat !important;
-    background-position: 68% 28% !important;
+    background-position: center center !important;
     background-size: cover !important;
     min-height: 100vh;
     min-height: 100dvh;
