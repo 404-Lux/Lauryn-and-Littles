@@ -14,8 +14,10 @@
 .hero-section.hero-arch-layout {
   position: relative;
   width: 100%;
-  min-height: unset !important;
-  height: auto !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+  min-height: 100vh !important;
+  min-height: 100dvh !important;
   aspect-ratio: unset;
   background-image: none !important;
   background-color: var(--color-wall-portrait, #f7f2ea) !important;
@@ -35,14 +37,14 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 180px;
+  height: 200px;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.4) 0%, transparent 100%);
   pointer-events: none;
   z-index: 1;
 }
 
 /* --------------------------------------------------------------------------
-   2. HERO CONTAINER WRAPPER (COMPACT MOBILE VIEWPORT)
+   2. HERO CONTAINER WRAPPER (EXACT FULL SCREEN 100dvh VIEWPORT)
    -------------------------------------------------------------------------- */
 .hero-arch-wrapper {
   position: relative;
@@ -50,14 +52,16 @@
   width: 100%;
   max-width: 1240px;
   margin: 0 auto;
-  min-height: unset !important;
+  height: 100% !important;
+  min-height: 100vh !important;
+  min-height: 100dvh !important;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between !important;
   box-sizing: border-box;
-  padding: clamp(62px, 7.5vh, 74px) 16px 14px 16px !important;
-  gap: 10px !important;
+  padding: clamp(66px, 9vh, 78px) 16px clamp(16px, 2.5vh, 24px) 16px !important;
+  gap: clamp(8px, 1.5vh, 16px) !important;
 }
 
 /* --------------------------------------------------------------------------
@@ -65,7 +69,8 @@
    -------------------------------------------------------------------------- */
 .arch-text-col {
   width: 100%;
-  max-width: 440px;
+  max-width: 460px;
+  flex: 0 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -78,7 +83,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 2px;
+  margin-bottom: 4px;
 }
 
 .arch-text-col .hero-heart-badge .heart-svg {
@@ -86,13 +91,13 @@
   height: 18px;
 }
 
-/* Headline - Scaled proportionally on mobile so it doesn't inflate height */
+/* Headline - Scaled proportionally on mobile */
 .arch-text-col .hero-headline {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-bottom: 10px;
+  margin-bottom: clamp(10px, 1.8vh, 15px);
   color: #4a5c52;
   line-height: 1.1;
   width: 100%;
@@ -100,15 +105,15 @@
 
 .arch-text-col .script-line {
   font-family: 'Brittany Signature', var(--font-script, cursive);
-  font-size: clamp(2.1rem, 6.8vw, 2.75rem) !important;
+  font-size: clamp(2.3rem, 7.4vw, 3rem) !important;
   font-weight: 400;
   font-style: normal;
   color: #4a5c52;
   display: block;
   letter-spacing: normal;
   transform: none;
-  margin-bottom: 2px !important;
-  line-height: 1.14;
+  margin-bottom: 3px !important;
+  line-height: 1.15;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -119,12 +124,12 @@
 
 .arch-text-col .serif-line {
   font-family: var(--font-headline-serif, 'Playfair Display', Georgia, serif);
-  font-size: clamp(1.5rem, 5vw, 1.95rem) !important;
+  font-size: clamp(1.6rem, 5.2vw, 2.05rem) !important;
   font-weight: 400;
   letter-spacing: -0.012em;
   color: #4a5c52;
   display: block;
-  line-height: 1.12;
+  line-height: 1.14;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
@@ -134,7 +139,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 10px;
   flex-wrap: wrap;
   width: 100%;
   margin-bottom: 0;
@@ -142,15 +147,17 @@
 
 .arch-text-col .btn-hero-primary,
 .arch-text-col .btn-hero-secondary {
-  padding: 8px 18px !important;
-  font-size: clamp(0.82rem, 2.4vw, 0.92rem) !important;
+  padding: 9px 20px !important;
+  font-size: clamp(0.85rem, 2.5vw, 0.95rem) !important;
 }
 
 /* --------------------------------------------------------------------------
-   4. ARCH-FRAMED PHOTO (COMPACT ON MOBILE)
+   4. ARCH-FRAMED PHOTO (FLUID FIT IN 100dvh VIEWPORT)
    -------------------------------------------------------------------------- */
 .arch-photo-col {
   width: 100%;
+  flex: 1 1 auto;
+  min-height: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -160,10 +167,13 @@
 
 .arch-frame-wrapper {
   position: relative;
-  width: clamp(175px, 46vw, 225px) !important;
-  aspect-ratio: 1 / 1.30 !important;
+  height: 100%;
+  max-height: clamp(260px, 44vh, 390px) !important;
+  aspect-ratio: 1 / 1.35 !important;
+  width: auto !important;
+  max-width: min(290px, 74vw) !important;
   margin: 0 auto;
-  border-radius: 999px 999px 16px 16px;
+  border-radius: 999px 999px 18px 18px;
 }
 
 /* The decorative offset outline behind the arch */
@@ -172,7 +182,7 @@
   inset: 0;
   border-radius: inherit;
   border: 1.5px solid var(--color-blush, #e5aba0);
-  transform: translate(8px, 8px);
+  transform: translate(9px, 9px);
   pointer-events: none;
   z-index: 1;
   opacity: 0.85;
