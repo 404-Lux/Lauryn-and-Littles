@@ -995,19 +995,22 @@ ul {
   padding: 6px 0 0 0;
   color: #3b493f;
   font-family: var(--font-sans);
-  font-size: 0.96rem;
-  line-height: 1.65;
+  font-size: 0.95rem;
+  line-height: 1.68;
   margin-bottom: 24px;
 }
 
 .waiting-list-note p,
 .message-note p {
-  margin: 0 0 18px 0;
+  margin: 0 0 16px 0 !important;
+  line-height: 1.68;
 }
 
+.waiting-list-note p:last-child,
 .waiting-list-note p:last-of-type,
+.message-note p:last-child,
 .message-note p:last-of-type {
-  margin-bottom: 22px;
+  margin-bottom: 24px !important;
 }
 
 .waiting-list-signature,
@@ -1881,20 +1884,23 @@ ul {
 
   .waiting-list-note,
   .message-note {
-    padding: 4px 0 0 0;
+    padding: 6px 0 0 0;
     font-size: 0.92rem;
-    line-height: 1.58;
-    margin-bottom: 20px;
+    line-height: 1.64;
+    margin-bottom: 22px;
   }
 
   .waiting-list-note p,
   .message-note p {
-    margin: 0 0 14px 0;
+    margin: 0 0 15px 0 !important;
+    line-height: 1.64;
   }
 
+  .waiting-list-note p:last-child,
   .waiting-list-note p:last-of-type,
+  .message-note p:last-child,
   .message-note p:last-of-type {
-    margin-bottom: 16px;
+    margin-bottom: 22px !important;
   }
 
   .waiting-list-signature,
