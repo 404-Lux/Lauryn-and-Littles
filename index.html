@@ -14,14 +14,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Allison&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Ms+Madi&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600&family=Sacramento&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="css/style.css?v=2.9">
+  <link rel="stylesheet" href="css/style.css?v=5.0">
 </head>
-<body>
-  <!-- Header Navbar (without links or buttons) -->
+<body class="has-green-overlay">
+  <!-- Header Navbar (Transparent with cream logo at top, solid cream with dark green logo on scroll via main.js) -->
   <header class="site-header" id="site-header">
     <nav class="header-navbar" aria-label="Brand Navigation">
       <div class="header-container">
-        <a href="#" class="brand-logo" aria-label="Lauryn and Littles Home">
+        <a href="index.html" class="brand-logo" aria-label="Lauryn and Littles Home">
           <div class="brand-name">
             <span class="logo-serif">Lauryn</span><span class="logo-script">and</span><span class="logo-serif">Littles</span>
             <span class="logo-heart" aria-hidden="true">&#9825;</span>
@@ -32,19 +32,19 @@
     </nav>
   </header>
 
-  <!-- Hero Section (Full Portrait on phone & Full Landscape on desktop) -->
+  <!-- Hero Section (Option 2: Brand-Green Overlay + Cream Text) -->
   <main>
-    <section class="hero-section" id="hero">
-      <div class="hero-wrapper">
-        <div class="hero-content">
-          <!-- Top Heart Icon -->
+    <section class="hero-section hero-green-overlay" id="hero">
+      <div class="hero-green-wrapper">
+        <div class="hero-green-content">
+          <!-- Top Heart Icon Badge -->
           <div class="hero-heart-badge" aria-hidden="true">
             <svg class="heart-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
               <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
 
-          <!-- Main Hero Headline -->
+          <!-- Main Hero Headline (Cream Text on Brand-Green Overlay) -->
           <h1 class="hero-headline">
             <span class="script-line">Connecting families</span>
             <span class="serif-line">with Au pairs</span>
@@ -61,7 +61,6 @@
               <span class="btn-arrow" aria-hidden="true">&rarr;</span>
             </button>
           </div>
-
         </div>
       </div>
     </section>
@@ -72,7 +71,7 @@
     <div class="footer-container">
       <div class="footer-content">
         <!-- Brand Logo -->
-        <a href="#" class="brand-logo footer-logo" aria-label="Lauryn and Littles Home">
+        <a href="index.html" class="brand-logo footer-logo" aria-label="Lauryn and Littles Home">
           <div class="brand-name">
             <span class="logo-serif">Lauryn</span><span class="logo-script">and</span><span class="logo-serif">Littles</span>
             <span class="logo-heart">&#9825;</span>
@@ -237,6 +236,17 @@
 
   <!-- Toast Notification Container -->
   <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+  <!-- OPTION PREVIEW BADGE / SWITCHER (Easily removable) -->
+  <aside class="option-preview-badge" id="option-preview-badge" aria-label="Hero Option Switcher">
+    <span class="preview-badge-label">Option 2 (Active)</span>
+    <nav class="preview-badge-nav" aria-label="Switch Option">
+      <a href="option1.html" class="preview-badge-link" title="Option 1: Arch Frame">1</a>
+      <a href="index.html" class="preview-badge-link active" title="Option 2: Brand-Green Overlay (Active)">2</a>
+      <a href="option3.html" class="preview-badge-link" title="Option 3: Photo Background">3</a>
+      <a href="option4.html" class="preview-badge-link" title="Option 4: Left-Aligned Inspo">4</a>
+    </nav>
+  </aside>
 
   <script src="js/main.js"></script>
 </body>

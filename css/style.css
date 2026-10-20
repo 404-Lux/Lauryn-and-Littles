@@ -2514,3 +2514,371 @@ ul {
   }
 }
 
+/* ==========================================================================
+   OPTION 2: BRAND-GREEN OVERLAY + CREAM TEXT (Integrated from option2.css)
+   Lauryn and Littles - Au Pair & Family Matching
+   Active selection adopted for main index.html
+   ========================================================================== */
+
+@font-face {
+  font-family: 'Autography';
+  src: url('../fonts/autography/Autography.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 1. Hero Section Reset & Full-Bleed Photo */
+.hero-section.hero-green-overlay {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  height: auto;
+  aspect-ratio: unset;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  box-sizing: border-box;
+  overflow: hidden;
+  padding: 0 !important;
+
+  /* Mobile Full-Bleed Portrait Photo */
+  background-image: url('../images/1000054756.jpg') !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  /* Pushed down so Lauryn's face and body sit fully clear of the green gradient shadow */
+  background-position: center 15% !important;
+  background-color: var(--color-sage-deep, #4a5c52);
+}
+
+/* 2. Multi-Stop Brand-Green Gradient Overlay */
+.hero-section.hero-green-overlay::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(40, 56, 47, 0.92) 0%,
+    rgba(45, 62, 53, 0.90) 22%,
+    rgba(45, 62, 53, 0.84) 30%,
+    rgba(52, 70, 60, 0.52) 36%,
+    rgba(62, 80, 70, 0.20) 41%,
+    rgba(74, 92, 82, 0.04) 45%,
+    transparent 47%
+  );
+}
+
+/* 3. Hero Wrapper & Content */
+.hero-green-wrapper {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  box-sizing: border-box;
+  padding: clamp(86px, 12vh, 108px) 20px clamp(28px, 4vh, 44px) 20px;
+}
+
+.hero-green-content {
+  width: 100%;
+  max-width: 580px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.hero-green-content .hero-heart-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.hero-green-content .heart-svg {
+  color: #f7dcd5;
+  filter: drop-shadow(0 2px 6px rgba(20, 32, 24, 0.4));
+}
+
+/* 4. Headline Typography - Cream Palette & High Contrast */
+.hero-green-content .hero-headline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: clamp(22px, 3.8vh, 32px);
+  color: var(--color-wall-portrait, #f7f2ea);
+  line-height: 1.12;
+  width: 100%;
+}
+
+.hero-green-content .script-line {
+  font-family: 'Brittany Signature', var(--font-script, cursive);
+  font-size: clamp(3.3rem, 10vw, 4.8rem);
+  font-weight: 400;
+  font-style: normal;
+  color: var(--color-wall-portrait, #f7f2ea);
+  display: block;
+  letter-spacing: normal;
+  transform: none;
+  margin-bottom: 16px;
+  line-height: 1.2;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding: 0.12em 0.2em;
+  overflow: visible;
+  white-space: nowrap;
+  -webkit-text-stroke: 0.35px var(--color-wall-portrait, #f7f2ea);
+  text-shadow: 0 1px 3px rgba(20, 32, 24, 0.5);
+}
+
+.hero-green-content .serif-line {
+  font-family: var(--font-headline-serif, 'Playfair Display', Georgia, serif);
+  font-size: clamp(2.2rem, 6.8vw, 3rem);
+  font-weight: 600;
+  letter-spacing: -0.012em;
+  color: var(--color-wall-portrait, #f7f2ea);
+  display: block;
+  line-height: 1.16;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  text-shadow: 0 1px 3px rgba(20, 32, 24, 0.45);
+}
+
+/* 5. Buttons (High Contrast Against Brand Green) */
+.hero-green-content .hero-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.hero-green-content .btn-hero-primary {
+  background-color: var(--color-wall-portrait, #f7f2ea);
+  color: #2f3e35;
+  box-shadow: 0 6px 20px rgba(20, 32, 24, 0.35);
+  font-weight: 600;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.hero-green-content .btn-hero-primary:hover {
+  background-color: #ffffff;
+  color: #1f2b24;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 26px rgba(20, 32, 24, 0.45);
+}
+
+.hero-green-content .btn-hero-primary .btn-arrow {
+  color: #2f3e35;
+}
+
+.hero-green-content .btn-hero-secondary {
+  background-color: #f2bfb3;
+  color: #233327;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 6px 20px rgba(20, 32, 24, 0.28);
+}
+
+.hero-green-content .btn-hero-secondary:hover {
+  background-color: #eaaea0;
+  color: #141f17;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 26px rgba(20, 32, 24, 0.38);
+}
+
+/* 6. Header & Logo Colour Switching for Brand-Green Overlay */
+body:has(.hero-green-overlay) .site-header:not(.scrolled) .logo-serif,
+body.has-green-overlay .site-header:not(.scrolled) .logo-serif {
+  color: var(--color-wall-portrait, #f7f2ea) !important;
+  text-shadow: 0 1px 4px rgba(20, 32, 24, 0.4);
+}
+
+body:has(.hero-green-overlay) .site-header:not(.scrolled) .logo-script,
+body.has-green-overlay .site-header:not(.scrolled) .logo-script {
+  color: #f7dcd5 !important;
+  text-shadow: 0 1px 4px rgba(20, 32, 24, 0.4);
+}
+
+body:has(.hero-green-overlay) .site-header:not(.scrolled) .logo-heart,
+body.has-green-overlay .site-header:not(.scrolled) .logo-heart {
+  color: #f7dcd5 !important;
+  text-shadow: 0 1px 4px rgba(20, 32, 24, 0.4);
+}
+
+body:has(.hero-green-overlay) .site-header:not(.scrolled) .brand-subtitle,
+body.has-green-overlay .site-header:not(.scrolled) .brand-subtitle {
+  color: rgba(247, 242, 234, 0.90) !important;
+  text-shadow: 0 1px 3px rgba(20, 32, 24, 0.35);
+}
+
+body:has(.hero-green-overlay) .site-header:not(.scrolled) .brand-logo,
+body.has-green-overlay .site-header:not(.scrolled) .brand-logo {
+  filter: none !important;
+}
+
+body:has(.hero-green-overlay) .site-header.scrolled .logo-serif,
+body.has-green-overlay .site-header.scrolled .logo-serif {
+  color: #4a5c52 !important;
+  text-shadow: none !important;
+}
+
+body:has(.hero-green-overlay) .site-header.scrolled .logo-script,
+body.has-green-overlay .site-header.scrolled .logo-script {
+  color: #db9c93 !important;
+  text-shadow: none !important;
+}
+
+body:has(.hero-green-overlay) .site-header.scrolled .logo-heart,
+body.has-green-overlay .site-header.scrolled .logo-heart {
+  color: #db9c93 !important;
+  text-shadow: none !important;
+}
+
+body:has(.hero-green-overlay) .site-header.scrolled .brand-subtitle,
+body.has-green-overlay .site-header.scrolled .brand-subtitle {
+  color: var(--color-sage-muted, #7d877e) !important;
+  text-shadow: none !important;
+}
+
+/* 7. Desktop Adaptation (min-width: 768px) */
+@media (min-width: 768px) {
+  .hero-section.hero-green-overlay {
+    background-image: url('../images/1000054758.jpg') !important;
+    background-position: 72% center !important;
+    background-size: cover !important;
+    height: 100vh;
+    height: 100dvh;
+    min-height: 640px;
+    max-height: 1080px;
+    justify-content: center;
+  }
+
+  /* Desktop Multi-Stop Horizontal Gradient */
+  .hero-section.hero-green-overlay::before {
+    background: linear-gradient(
+      90deg,
+      rgba(38, 54, 45, 0.94) 0%,
+      rgba(45, 62, 53, 0.92) 26%,
+      rgba(48, 66, 56, 0.86) 36%,
+      rgba(55, 74, 64, 0.65) 46%,
+      rgba(65, 84, 73, 0.35) 54%,
+      rgba(74, 92, 82, 0.12) 60%,
+      transparent 66%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(38, 54, 45, 0.50) 0%,
+      transparent 18%
+    );
+  }
+
+  .hero-green-wrapper {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    padding: clamp(90px, 12vh, 120px) 40px clamp(40px, 6vh, 60px) clamp(50px, 7vw, 110px);
+  }
+
+  .hero-green-content {
+    max-width: 520px;
+    margin: 0;
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero-green-content .script-line {
+    font-size: clamp(3.4rem, 4.3vw, 4.5rem);
+    margin-bottom: 14px;
+  }
+
+  .hero-green-content .serif-line {
+    font-size: clamp(2.25rem, 2.9vw, 3rem);
+  }
+
+  .hero-green-content .hero-buttons {
+    gap: 16px;
+    margin-top: 8px;
+  }
+}
+
+/* 8. Option Preview Switcher (Shared) */
+.option-preview-badge {
+  position: fixed;
+  bottom: 22px;
+  right: 22px;
+  z-index: 999;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background-color: rgba(247, 242, 234, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(74, 92, 82, 0.18);
+  border-radius: 9999px;
+  padding: 6px 14px 6px 16px;
+  box-shadow: 0 8px 24px rgba(50, 60, 52, 0.14);
+  font-family: var(--font-sans, -apple-system, sans-serif);
+  font-size: 0.82rem;
+  color: #4a5c52;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.option-preview-badge:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(50, 60, 52, 0.20);
+}
+
+.preview-badge-label {
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.preview-badge-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border-left: 1px solid rgba(74, 92, 82, 0.2);
+  padding-left: 8px;
+}
+
+.preview-badge-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  height: 24px;
+  padding: 0 6px;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #4a5c52;
+  background-color: transparent;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.preview-badge-link:hover {
+  background-color: rgba(74, 92, 82, 0.12);
+}
+
+.preview-badge-link.active {
+  background-color: #4a5c52;
+  color: #ffffff;
+}
+
+
