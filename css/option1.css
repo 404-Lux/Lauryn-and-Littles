@@ -1,0 +1,348 @@
+/* ==========================================================================
+   OPTION 1: ARCH-FRAMED PHOTO ON CREAM (option1.css)
+   Lauryn and Littles - Au Pair & Family Matching
+   Hero: Solid pristine cream background (#f7f2ea)
+   Photo: Arched boutique frame (border-radius: 999px 999px 18px 18px)
+   Accent: Offset peach outline behind the arch for bespoke luxury feel
+   Desktop: Text left, Arched photo right
+   Mobile: Text top, Arched photo bottom
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. RESET & SOLID CREAM BASE
+   -------------------------------------------------------------------------- */
+.hero-section.hero-arch-layout {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  height: auto;
+  aspect-ratio: unset;
+  background-image: none !important;
+  background-color: var(--color-wall-portrait, #f7f2ea) !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  box-sizing: border-box;
+  overflow: hidden;
+  padding: 0 !important;
+}
+
+/* Subtle gentle ambient warmth on plain cream */
+.hero-arch-layout::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 240px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.4) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* --------------------------------------------------------------------------
+   2. HERO CONTAINER WRAPPER
+   -------------------------------------------------------------------------- */
+.hero-arch-wrapper {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  padding: clamp(84px, 12vh, 108px) 20px clamp(36px, 5vh, 60px) 20px;
+  gap: clamp(28px, 4vh, 48px);
+}
+
+/* --------------------------------------------------------------------------
+   3. TEXT COLUMN
+   -------------------------------------------------------------------------- */
+.arch-text-col {
+  width: 100%;
+  max-width: 540px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 0 auto;
+}
+
+/* Heart Badge */
+.arch-text-col .hero-heart-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+/* Headline - Preserving font-family, sizes & colors strictly */
+.arch-text-col .hero-headline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: clamp(18px, 3.5vh, 28px);
+  color: #4a5c52;
+  line-height: 1.12;
+  width: 100%;
+}
+
+.arch-text-col .script-line {
+  font-family: 'Brittany Signature', var(--font-script, cursive);
+  font-size: clamp(3rem, 9.2vw, 4.3rem);
+  font-weight: 400;
+  font-style: normal;
+  color: #4a5c52;
+  display: block;
+  letter-spacing: normal;
+  transform: none;
+  margin-bottom: 16px;
+  line-height: 1.2;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding: 0.12em 0.2em;
+  overflow: visible;
+  white-space: nowrap;
+}
+
+.arch-text-col .serif-line {
+  font-family: var(--font-headline-serif, 'Playfair Display', Georgia, serif);
+  font-size: clamp(2.1rem, 6.4vw, 2.8rem);
+  font-weight: 400;
+  letter-spacing: -0.012em;
+  color: #4a5c52;
+  display: block;
+  line-height: 1.16;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Action Buttons */
+.arch-text-col .hero-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-bottom: 0;
+}
+
+/* --------------------------------------------------------------------------
+   4. ARCH-FRAMED PHOTO WITH OFFSET BOUTIQUE OUTLINE
+   -------------------------------------------------------------------------- */
+.arch-photo-col {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.arch-frame-wrapper {
+  position: relative;
+  width: clamp(270px, 74vw, 360px);
+  aspect-ratio: 1 / 1.42;
+  margin: 0 auto;
+  border-radius: 999px 999px 18px 18px;
+}
+
+/* The decorative offset outline behind the arch */
+.arch-offset-outline {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 2px solid var(--color-blush, #e5aba0);
+  transform: translate(12px, 12px);
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.85;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+}
+
+.arch-frame-wrapper:hover .arch-offset-outline {
+  transform: translate(16px, 16px);
+  border-color: #db9c93;
+}
+
+/* The actual clipping arch container */
+.arch-photo-frame {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  overflow: hidden;
+  background-color: var(--color-wall-portrait, #f7f2ea);
+  box-shadow:
+    0 18px 46px rgba(74, 92, 82, 0.16),
+    0 4px 14px rgba(74, 92, 82, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+.arch-photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Pulled up so Lauryn sits closer to the top arch and shows full body */
+  object-position: center 78%;
+  display: block;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.arch-frame-wrapper:hover .arch-photo-img {
+  transform: scale(1.025);
+}
+
+/* --------------------------------------------------------------------------
+   5. DESKTOP 2-COLUMN LAYOUT (min-width: 992px)
+   -------------------------------------------------------------------------- */
+@media (min-width: 992px) {
+  .hero-section.hero-arch-layout {
+    height: 100vh;
+    height: 100dvh;
+    min-height: 640px;
+    max-height: 1080px;
+    justify-content: center;
+  }
+
+  .hero-arch-wrapper {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: clamp(90px, 12vh, 120px) clamp(40px, 6vw, 100px) clamp(40px, 6vh, 60px) clamp(40px, 6vw, 100px);
+    gap: clamp(40px, 5vw, 80px);
+  }
+
+  /* Left column: Text */
+  .arch-text-col {
+    flex: 1 1 50%;
+    max-width: 540px;
+    margin: 0;
+    align-items: center;
+    text-align: center;
+  }
+
+  .arch-text-col .script-line {
+    font-size: clamp(3.2rem, 4.2vw, 4.4rem);
+    margin-bottom: 14px;
+  }
+
+  .arch-text-col .serif-line {
+    font-size: clamp(2.2rem, 2.8vw, 2.9rem);
+  }
+
+  .arch-text-col .hero-buttons {
+    gap: 14px;
+    margin-top: 6px;
+  }
+
+  /* Right column: Arched photo */
+  .arch-photo-col {
+    flex: 1 1 50%;
+    justify-content: center;
+  }
+
+  .arch-frame-wrapper {
+    width: clamp(330px, 30vw, 430px);
+    aspect-ratio: 1 / 1.44;
+    margin: 0;
+  }
+
+  .arch-offset-outline {
+    transform: translate(16px, 16px);
+  }
+
+  .arch-frame-wrapper:hover .arch-offset-outline {
+    transform: translate(22px, 22px);
+  }
+}
+
+/* Tablet intermediary (768px - 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+  .hero-arch-wrapper {
+    gap: 36px;
+    padding-top: 100px;
+  }
+
+  .arch-frame-wrapper {
+    width: 320px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   6. OPTION PREVIEW BADGE / SWITCHER (Easily removable)
+   -------------------------------------------------------------------------- */
+.option-preview-badge {
+  position: fixed;
+  bottom: 22px;
+  right: 22px;
+  z-index: 999;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background-color: rgba(247, 242, 234, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(74, 92, 82, 0.18);
+  border-radius: 9999px;
+  padding: 6px 14px 6px 16px;
+  box-shadow: 0 8px 24px rgba(50, 60, 52, 0.14);
+  font-family: var(--font-sans, -apple-system, sans-serif);
+  font-size: 0.82rem;
+  color: #4a5c52;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.option-preview-badge:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(50, 60, 52, 0.20);
+}
+
+.preview-badge-label {
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.preview-badge-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border-left: 1px solid rgba(74, 92, 82, 0.2);
+  padding-left: 8px;
+}
+
+.preview-badge-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  height: 24px;
+  padding: 0 6px;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #4a5c52;
+  background-color: transparent;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.preview-badge-link:hover {
+  background-color: rgba(74, 92, 82, 0.12);
+}
+
+.preview-badge-link.active {
+  background-color: #4a5c52;
+  color: #ffffff;
+}
