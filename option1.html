@@ -145,10 +145,13 @@
       <form class="modal-form" id="request-form" onsubmit="event.preventDefault(); window.submitRequest();">
         <input type="hidden" id="request-type" value="Family needing a Sitter">
 
-        <div class="form-field">
-          <label for="specific-need">Be specific on what you need:</label>
-          <textarea id="specific-need" rows="3" required placeholder="e.g. Dates, Hours, Children's ages, Duties, etc." class="form-textarea"></textarea>
+        <div class="message-note">
+          <p>Welcome to Lauryn &amp; Littles!</p>
+          <p>Finding the perfect au pair for your family is a big decision, and we are delighted to help guide you.</p>
+          <p>Please share your basic contact details below to join our waiting list. Once submitted, we will reach out with our application form so we can learn about your family's unique needs, values, and preferences.</p>
+          <p>We look forward to finding your perfect match.</p>
         </div>
+
 
         <div class="form-field">
           <label for="need-location">LOCATION (TOWN &amp; SUBURB)</label>
@@ -163,7 +166,7 @@
         <div class="form-row">
           <div class="form-field">
             <label for="client-name">Your Full Name</label>
-            <input type="text" id="client-name" required placeholder="e.g. Bert Higgins" class="form-input">
+            <input type="text" id="client-name" required placeholder="Larissa Saunders" class="form-input">
           </div>
           <div class="form-field">
             <label for="client-phone">PHONE NUMBER</label>
@@ -173,7 +176,7 @@
 
         <div class="form-field">
           <label for="client-email">Email Address</label>
-          <input type="email" id="client-email" required placeholder="robert.greene@gmail.com" class="form-input">
+          <input type="email" id="client-email" required placeholder="Larissa_saunders@gmail.com" class="form-input">
         </div>
 
         <div class="form-checkbox-field">
@@ -196,22 +199,19 @@
       <!-- Sitter Waiting List Form (I'm looking for a Family) -->
       <form class="modal-form" id="waiting-list-form" style="display: none;" onsubmit="event.preventDefault(); window.submitWaitingList();">
         <div class="waiting-list-note">
-          <p>Welcome to Lauryn and Littles! If you love children and would like to be part of our community, we'd love to get to know you.</p>
-          <p>Please fill in the details below to join our waiting list. We'll reach out as soon as possible.</p>
-          <div class="waiting-list-signature">
-            <span class="sig-regards">Warm Regards,</span>
-            <span class="sig-name">Lauryn</span>
-          </div>
+          <p>Welcome to Lauryn &amp; Littles!</p>
+          <p>Looking for a host family for your next au pair adventure? We’d love to hear from you!</p>
+          <p>Fill in the details below to join our waiting list. We’ll be in touch soon to learn more about you and what you’re looking for.</p>
         </div>
 
         <div class="form-field">
           <label for="waiting-name">Full Name</label>
-          <input type="text" id="waiting-name" required placeholder="e.g. Bert Higgins" class="form-input">
+          <input type="text" id="waiting-name" required placeholder="Larissa Saunders" class="form-input">
         </div>
 
         <div class="form-field">
           <label for="waiting-email">Email</label>
-          <input type="email" id="waiting-email" required placeholder="robert.greene@gmail.com" class="form-input">
+          <input type="email" id="waiting-email" required placeholder="Larissa_saunders@gmail.com" class="form-input">
         </div>
 
         <div class="form-row">
