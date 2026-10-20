@@ -14,19 +14,17 @@
 .hero-section.hero-arch-layout {
   position: relative;
   width: 100%;
-  height: 100vh !important;
-  height: 100dvh !important;
   min-height: 100vh !important;
   min-height: 100dvh !important;
+  height: auto !important;
   aspect-ratio: unset;
   background-image: none !important;
   background-color: var(--color-wall-portrait, #f7f2ea) !important;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  overflow: hidden;
   padding: 0 !important;
 }
 
@@ -44,7 +42,7 @@
 }
 
 /* --------------------------------------------------------------------------
-   2. HERO CONTAINER WRAPPER (EXACT FULL SCREEN 100dvh VIEWPORT)
+   2. HERO CONTAINER WRAPPER (FULL-SCREEN MOBILE & DESKTOP)
    -------------------------------------------------------------------------- */
 .hero-arch-wrapper {
   position: relative;
@@ -52,16 +50,16 @@
   width: 100%;
   max-width: 1240px;
   margin: 0 auto;
-  height: 100% !important;
   min-height: 100vh !important;
   min-height: 100dvh !important;
+  height: auto !important;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between !important;
+  justify-content: center !important;
   box-sizing: border-box;
-  padding: clamp(66px, 9vh, 78px) 16px clamp(16px, 2.5vh, 24px) 16px !important;
-  gap: clamp(8px, 1.5vh, 16px) !important;
+  padding: clamp(64px, 8.5vh, 76px) 16px clamp(16px, 2.5vh, 24px) 16px !important;
+  gap: clamp(10px, 1.8vh, 16px) !important;
 }
 
 /* --------------------------------------------------------------------------
@@ -83,7 +81,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 
 .arch-text-col .hero-heart-badge .heart-svg {
@@ -97,7 +95,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-bottom: clamp(10px, 1.8vh, 15px);
+  margin-bottom: clamp(8px, 1.5vh, 12px);
   color: #4a5c52;
   line-height: 1.1;
   width: 100%;
@@ -105,14 +103,14 @@
 
 .arch-text-col .script-line {
   font-family: 'Brittany Signature', var(--font-script, cursive);
-  font-size: clamp(2.3rem, 7.4vw, 3rem) !important;
+  font-size: clamp(2.2rem, 7vw, 2.85rem) !important;
   font-weight: 400;
   font-style: normal;
   color: #4a5c52;
   display: block;
   letter-spacing: normal;
   transform: none;
-  margin-bottom: 3px !important;
+  margin-bottom: 2px !important;
   line-height: 1.15;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -124,7 +122,7 @@
 
 .arch-text-col .serif-line {
   font-family: var(--font-headline-serif, 'Playfair Display', Georgia, serif);
-  font-size: clamp(1.6rem, 5.2vw, 2.05rem) !important;
+  font-size: clamp(1.5rem, 4.8vw, 1.95rem) !important;
   font-weight: 400;
   letter-spacing: -0.012em;
   color: #4a5c52;
@@ -147,17 +145,16 @@
 
 .arch-text-col .btn-hero-primary,
 .arch-text-col .btn-hero-secondary {
-  padding: 9px 20px !important;
-  font-size: clamp(0.85rem, 2.5vw, 0.95rem) !important;
+  padding: 8px 18px !important;
+  font-size: clamp(0.82rem, 2.4vw, 0.92rem) !important;
 }
 
 /* --------------------------------------------------------------------------
-   4. ARCH-FRAMED PHOTO (FLUID FIT IN 100dvh VIEWPORT)
+   4. ARCH-FRAMED PHOTO (STABLE FIXED-WIDTH FIT AT ALL SCROLL POSITIONS)
    -------------------------------------------------------------------------- */
 .arch-photo-col {
   width: 100%;
-  flex: 1 1 auto;
-  min-height: 0;
+  flex: 0 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -167,11 +164,11 @@
 
 .arch-frame-wrapper {
   position: relative;
-  height: 100%;
-  max-height: clamp(260px, 44vh, 390px) !important;
-  aspect-ratio: 1 / 1.35 !important;
-  width: auto !important;
-  max-width: min(290px, 74vw) !important;
+  width: clamp(235px, 66vw, 275px) !important;
+  max-width: 88vw !important;
+  height: auto !important;
+  max-height: none !important;
+  aspect-ratio: 1 / 1.34 !important;
   margin: 0 auto;
   border-radius: 999px 999px 18px 18px;
 }
