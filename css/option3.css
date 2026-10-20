@@ -4,12 +4,12 @@
    Same style and html as index.html, with 1000054772.jpg as background image
    ========================================================================== */
 
-/* Mobile / Portrait Hero Background (Pushed down so buttons do not cover the person's head) */
+/* Mobile / Portrait Hero Background (Pulled up with comfortable clearance above head) */
 .hero-section {
   background-color: #e4eaf0 !important;
   background-image: url('../images/1000054772.jpg') !important;
   background-repeat: no-repeat !important;
-  background-position: center clamp(45px, 7vh, 65px) !important;
+  background-position: center clamp(10px, 1.8vh, 18px) !important;
   background-size: cover !important;
 }
 
@@ -17,7 +17,7 @@
 @media (min-width: 768px) and (max-width: 991px) {
   .hero-section {
     background-image: url('../images/1000054772.jpg') !important;
-    background-position: center clamp(25px, 4vh, 40px) !important;
+    background-position: center 10px !important;
     background-size: cover !important;
   }
 }
