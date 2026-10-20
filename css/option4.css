@@ -1,0 +1,293 @@
+/* ==========================================================================
+   OPTION 4: LEFT-ALIGNED HERO (1000054774.jpg) - (option4.css)
+   Lauryn and Littles - Au Pair & Family Matching
+   Layout based on inspo:
+   - Photo: 1000054774.jpg, Lauryn positioned on the right
+   - Content: Left-aligned (align-items: flex-start, text-align: left)
+   - Left-side width constrained so Lauryn is unobstructed
+   - Buttons: Stacked vertically (Green on top, Pink below)
+   - Text: Crisp white / soft cream with subtle shadow for high contrast on foliage
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   0. SOLID NON-TRANSPARENT HEADER NAVBAR
+   -------------------------------------------------------------------------- */
+.site-header {
+  background-color: var(--color-wall-portrait, #f7f2ea) !important;
+  border-bottom: 1px solid rgba(74, 92, 82, 0.08) !important;
+  box-shadow: 0 2px 12px rgba(50, 60, 52, 0.06) !important;
+}
+
+.site-header .brand-logo .logo-serif,
+.site-header .brand-logo .logo-script {
+  color: #4a5c52 !important;
+}
+
+.site-header .brand-subtitle {
+  color: #4a5c52 !important;
+}
+
+/* --------------------------------------------------------------------------
+   1. HERO SECTION WITH 1000054774.jpg (LAURYN ON RIGHT)
+   -------------------------------------------------------------------------- */
+.hero-section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  height: 100vh;
+  height: 100dvh;
+  aspect-ratio: unset;
+  background-color: #2a382f !important;
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba(24, 34, 28, 0.52) 0%,
+      rgba(24, 34, 28, 0.35) 38%,
+      rgba(24, 34, 28, 0.12) 55%,
+      transparent 72%
+    ),
+    url('../images/1000054774.jpg') !important;
+  background-repeat: no-repeat !important;
+  background-position: 78% center !important;
+  background-size: cover !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start !important;
+  align-items: flex-start !important;
+  box-sizing: border-box;
+  overflow: hidden;
+  padding: 0 !important;
+}
+
+/* Direct Hero Content: strictly on the left side, positioned with comfortable clearance below navbar */
+.hero-section > .hero-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: min(340px, 66vw) !important;
+  margin: 0 !important;
+  padding: clamp(100px, 14vh, 125px) 16px clamp(24px, 3vh, 36px) clamp(18px, 5vw, 28px) !important;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start !important;
+  text-align: left !important;
+  box-sizing: border-box;
+}
+
+/* Headline: Left-aligned with grand, generous typography */
+.hero-section .hero-headline {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start !important;
+  justify-content: flex-start;
+  margin-bottom: clamp(18px, 3vh, 26px) !important;
+  line-height: 1.12;
+  width: 100%;
+  text-align: left !important;
+}
+
+/* Script Wrap: left-aligned */
+.hero-section .script-wrap {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start !important;
+  width: fit-content;
+}
+
+/* Heart Badge: aligned to the left */
+.hero-section .hero-heart-badge {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start !important;
+  align-self: flex-start !important;
+  margin-bottom: 6px !important;
+  width: auto;
+}
+
+.hero-section .hero-heart-badge .heart-svg {
+  width: 22px;
+  height: 22px;
+  color: #f2bfb3;
+  filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.35));
+}
+
+.hero-section .script-line {
+  font-family: 'Brittany Signature', var(--font-script, cursive) !important;
+  font-size: clamp(3.2rem, 9.6vw, 4.4rem) !important;
+  font-weight: 400;
+  font-style: normal;
+  color: #ffffff !important;
+  display: block;
+  letter-spacing: normal;
+  transform: none;
+  margin-bottom: 8px !important;
+  line-height: 1.18;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding: 0.05em 0;
+  overflow: visible;
+  white-space: normal;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.40);
+}
+
+.hero-section .serif-line {
+  font-family: var(--font-headline-serif, 'Playfair Display', Georgia, serif) !important;
+  font-size: clamp(2.2rem, 6.6vw, 2.9rem) !important;
+  font-weight: 400;
+  letter-spacing: -0.012em;
+  color: #fdfbf7 !important;
+  display: block;
+  line-height: 1.15;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.38);
+}
+
+/* Buttons: Stacked vertically (Green on top, Pink below) */
+.hero-section .hero-buttons {
+  display: flex;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  justify-content: flex-start !important;
+  gap: 12px !important;
+  width: 100%;
+  margin-bottom: 0 !important;
+}
+
+.hero-section .btn-hero-primary,
+.hero-section .btn-hero-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: clamp(0.88rem, 2.6vw, 0.98rem) !important;
+  padding: 11px 22px !important;
+  border-radius: 9999px;
+  letter-spacing: 0.02em;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
+  white-space: nowrap;
+}
+
+/* Green Button First */
+.hero-section .btn-hero-primary {
+  background-color: #4a5c52;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Pink Button Below */
+.hero-section .btn-hero-secondary {
+  background-color: #f2bfb3;
+  color: #233327;
+  border: 1px solid rgba(67, 85, 72, 0.15);
+}
+
+/* Tablet Media Query (768px - 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+  .hero-section {
+    background-position: 70% center !important;
+  }
+
+  .hero-section > .hero-content {
+    max-width: 440px !important;
+    padding-left: 40px !important;
+  }
+}
+
+/* Desktop Media Query (min-width: 992px) */
+@media (min-width: 992px) {
+  .hero-section {
+    background-position: 65% center !important;
+    background-image:
+      linear-gradient(
+        90deg,
+        rgba(24, 34, 28, 0.55) 0%,
+        rgba(24, 34, 28, 0.38) 35%,
+        rgba(24, 34, 28, 0.10) 55%,
+        transparent 70%
+      ),
+      url('../images/1000054774.jpg') !important;
+  }
+
+  .hero-section > .hero-content {
+    max-width: 520px !important;
+    padding: clamp(80px, 9vw, 110px) 40px 40px clamp(50px, 7vw, 120px) !important;
+  }
+
+  .hero-section .script-line {
+    font-size: 3.8rem !important;
+  }
+
+  .hero-section .serif-line {
+    font-size: 2.7rem !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   OPTION PREVIEW BADGE / SWITCHER (Easily removable)
+   -------------------------------------------------------------------------- */
+.option-preview-badge {
+  position: fixed;
+  bottom: 22px;
+  right: 22px;
+  z-index: 999;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background-color: rgba(247, 242, 234, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(74, 92, 82, 0.18);
+  border-radius: 9999px;
+  padding: 6px 14px 6px 16px;
+  box-shadow: 0 8px 24px rgba(50, 60, 52, 0.14);
+  font-family: var(--font-sans, -apple-system, sans-serif);
+  font-size: 0.82rem;
+  color: #4a5c52;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.option-preview-badge:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(50, 60, 52, 0.20);
+}
+
+.preview-badge-label {
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.preview-badge-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border-left: 1px solid rgba(74, 92, 82, 0.2);
+  padding-left: 8px;
+}
+
+.preview-badge-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  height: 24px;
+  padding: 0 6px;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #4a5c52;
+  background-color: transparent;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.preview-badge-link:hover {
+  background-color: rgba(74, 92, 82, 0.12);
+}
+
+.preview-badge-link.active {
+  background-color: #4a5c52;
+  color: #ffffff;
+}
