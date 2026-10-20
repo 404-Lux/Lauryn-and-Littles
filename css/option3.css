@@ -4,12 +4,12 @@
    Same style and html as index.html, with 1000054772.jpg as background image
    ========================================================================== */
 
-/* Mobile / Portrait Hero Background (Pulled up to golden ratio position) */
+/* Mobile / Portrait Hero Background (Pulled up closer with safe head clearance) */
 .hero-section {
   background-color: #e4eaf0 !important;
   background-image: url('../images/1000054772.jpg') !important;
   background-repeat: no-repeat !important;
-  background-position: center 16% !important;
+  background-position: center 26% !important;
   background-size: cover !important;
 }
 
