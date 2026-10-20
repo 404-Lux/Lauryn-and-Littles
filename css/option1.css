@@ -160,6 +160,7 @@
   justify-content: center;
   position: relative;
   box-sizing: border-box;
+  margin-top: clamp(22px, 4vh, 34px) !important;
   padding-bottom: 24px;
 }
 
@@ -268,6 +269,8 @@
   .arch-photo-col {
     flex: 1 1 50%;
     justify-content: center;
+    margin-top: 0 !important;
+    padding-bottom: 0 !important;
   }
 
   .arch-frame-wrapper {
