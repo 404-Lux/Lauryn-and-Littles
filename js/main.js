@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
         roleSitterBtn.classList.add('active');
         roleSitterBtn.setAttribute('aria-selected', 'true');
       }
-      if (requestTypeInput) requestTypeInput.value = 'Sitter looking for a Family';
+      if (requestTypeInput) requestTypeInput.value = 'Au Pair looking for a Family';
       if (modalTitle) modalTitle.textContent = 'Join our waiting list';
       if (requestForm) requestForm.style.display = 'none';
       if (waitingListForm) waitingListForm.style.display = 'flex';
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
         roleFamilyBtn.classList.add('active');
         roleFamilyBtn.setAttribute('aria-selected', 'true');
       }
-      if (requestTypeInput) requestTypeInput.value = 'Family needing a Sitter';
+      if (requestTypeInput) requestTypeInput.value = 'Family looking for Au Pair';
       if (modalTitle) modalTitle.textContent = 'Tell us what you need';
       if (waitingListForm) waitingListForm.style.display = 'none';
       if (requestForm) requestForm.style.display = 'flex';
@@ -597,8 +597,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // Once the client provides the Google Sheets App Script / Webhook URL and email,
   // enter them below. Left blank for now as requested.
   // ============================================================================
-  const GOOGLE_SHEETS_WEBHOOK_URL = ''; // TODO: Paste client's Google Sheets webhook URL here
-  const NOTIFICATION_EMAIL = '';        // TODO: Paste client's notification email here
+  const GOOGLE_SHEETS_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbwLZQvuYyHdzzmucAwreMAdYSNAaNRdHIPofiZrBK9eYoMu91KIvxZ4ig9lHN7r5hnXQQ/exec';
+  const NOTIFICATION_EMAIL = '';
 
   window.submitRequest = async () => {
     const agreeTerms = document.getElementById('agree-terms-family');
@@ -608,26 +608,18 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    const roleType = requestTypeInput ? requestTypeInput.value : 'Family needing a Sitter';
+    const roleType = requestTypeInput ? requestTypeInput.value : 'Family looking for Au Pair';
     const clientName = document.getElementById('client-name')?.value || 'there';
     const clientPhone = document.getElementById('client-phone')?.value || '';
     const clientEmail = document.getElementById('client-email')?.value || '';
-    const specificNeed = document.getElementById('specific-need')?.value || '';
-    const dateNeeded = document.getElementById('need-date-picker')?.value || '';
-    const hoursNeeded = document.getElementById('need-start-time')?.value || '';
-    const location = document.getElementById('need-location')?.value || '';
-    const additionalNotes = document.getElementById('need-details')?.value || '';
+    const location = document.getElementById('need-location')?.value || '—';
 
     const payload = {
       role: roleType,
       fullName: clientName,
       phone: clientPhone,
       email: clientEmail,
-      specificNeed: specificNeed,
-      dates: dateNeeded,
-      hours: hoursNeeded,
       location: location,
-      notes: additionalNotes,
       submittedAt: new Date().toLocaleString('en-GB', { timeZone: 'Europe/London' })
     };
 
@@ -671,14 +663,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const fullName = document.getElementById('waiting-name')?.value || 'there';
     const email = document.getElementById('waiting-email')?.value || '';
     const phone = document.getElementById('waiting-phone')?.value || '';
-    const city = document.getElementById('waiting-city')?.value || '';
 
     const payload = {
-      role: 'Sitter looking for a Family (Waiting List)',
+      role: 'Au Pair looking for a Family (Waiting List)',
       fullName: fullName,
       email: email,
       phone: phone,
-      city: city,
+      location: '—',
       submittedAt: new Date().toLocaleString('en-GB', { timeZone: 'Europe/London' })
     };
 
