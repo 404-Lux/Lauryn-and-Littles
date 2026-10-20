@@ -56,10 +56,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center !important;
+  justify-content: space-evenly !important;
   box-sizing: border-box;
-  padding: clamp(64px, 8.5vh, 76px) 16px clamp(16px, 2.5vh, 24px) 16px !important;
-  gap: clamp(10px, 1.8vh, 16px) !important;
+  padding: 56px 16px 16px 16px !important;
+  gap: 12px !important;
 }
 
 /* --------------------------------------------------------------------------
@@ -67,7 +67,7 @@
    -------------------------------------------------------------------------- */
 .arch-text-col {
   width: 100%;
-  max-width: 460px;
+  max-width: 480px;
   flex: 0 0 auto;
   display: flex;
   flex-direction: column;
@@ -85,17 +85,17 @@
 }
 
 .arch-text-col .hero-heart-badge .heart-svg {
-  width: 18px;
-  height: 18px;
+  width: 19px;
+  height: 19px;
 }
 
-/* Headline - Scaled proportionally on mobile */
+/* Headline - Generous, readable size with breathing room to buttons below */
 .arch-text-col .hero-headline {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-bottom: clamp(8px, 1.5vh, 12px);
+  margin-bottom: clamp(16px, 2.6vh, 22px) !important;
   color: #4a5c52;
   line-height: 1.1;
   width: 100%;
@@ -103,14 +103,14 @@
 
 .arch-text-col .script-line {
   font-family: 'Brittany Signature', var(--font-script, cursive);
-  font-size: clamp(2.2rem, 7vw, 2.85rem) !important;
+  font-size: clamp(2.6rem, 8.4vw, 3.25rem) !important;
   font-weight: 400;
   font-style: normal;
   color: #4a5c52;
   display: block;
   letter-spacing: normal;
   transform: none;
-  margin-bottom: 2px !important;
+  margin-bottom: 4px !important;
   line-height: 1.15;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -122,7 +122,7 @@
 
 .arch-text-col .serif-line {
   font-family: var(--font-headline-serif, 'Playfair Display', Georgia, serif);
-  font-size: clamp(1.5rem, 4.8vw, 1.95rem) !important;
+  font-size: clamp(1.75rem, 5.6vw, 2.2rem) !important;
   font-weight: 400;
   letter-spacing: -0.012em;
   color: #4a5c52;
@@ -137,7 +137,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 12px;
   flex-wrap: wrap;
   width: 100%;
   margin-bottom: 0;
@@ -145,8 +145,8 @@
 
 .arch-text-col .btn-hero-primary,
 .arch-text-col .btn-hero-secondary {
-  padding: 8px 18px !important;
-  font-size: clamp(0.82rem, 2.4vw, 0.92rem) !important;
+  padding: 9px 20px !important;
+  font-size: clamp(0.85rem, 2.5vw, 0.95rem) !important;
 }
 
 /* --------------------------------------------------------------------------
@@ -164,7 +164,7 @@
 
 .arch-frame-wrapper {
   position: relative;
-  width: clamp(235px, 66vw, 275px) !important;
+  width: clamp(245px, 68vw, 290px) !important;
   max-width: 88vw !important;
   height: auto !important;
   max-height: none !important;
