@@ -403,6 +403,34 @@ ul {
   transform: translateX(4px);
 }
 
+/* Button Loading & Disabled State */
+.btn-hero-primary:disabled,
+.btn-hero-primary.is-loading {
+  opacity: 0.78;
+  cursor: not-allowed !important;
+  transform: none !important;
+  box-shadow: 0 4px 12px rgba(74, 92, 82, 0.2) !important;
+  pointer-events: none;
+}
+
+.btn-spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: btnSpin 0.75s linear infinite;
+  margin-right: 6px;
+  flex-shrink: 0;
+}
+
+@keyframes btnSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 /* Button 2: "Find a Family ->" */
 .btn-hero-secondary {
   display: inline-flex;
@@ -2108,7 +2136,7 @@ ul {
     margin-bottom: 9px;
     letter-spacing: normal;
     line-height: 1.2;
-    filter: drop-shadow(0 0 1.5px #ffffff) drop-shadow(0 0 2px #ffffff) drop-shadow(0 0 6px rgba(255, 255, 255, 0.85));
+    filter: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -2127,7 +2155,7 @@ ul {
     text-align: center;
     line-height: 1.15;
     letter-spacing: -0.01em;
-    filter: drop-shadow(0 0 1.5px #ffffff) drop-shadow(0 0 2px #ffffff) drop-shadow(0 0 6px rgba(255, 255, 255, 0.85));
+    filter: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     font-feature-settings: "liga" 1, "kern" 1;
@@ -2531,6 +2559,66 @@ ul {
 }
 
 /* ==========================================================================
+   SCROLL TO TOP FLOATING BUTTON
+   ========================================================================== */
+.scroll-to-top-btn {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 999;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: #4a5c52;
+  color: #f7f2ea;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 4px 18px rgba(40, 56, 47, 0.28);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(14px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s, background-color 0.25s, box-shadow 0.25s;
+}
+
+.scroll-to-top-btn.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.scroll-to-top-btn:hover {
+  background-color: #38473e;
+  color: #ffffff;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(40, 56, 47, 0.38);
+}
+
+.scroll-to-top-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(40, 56, 47, 0.2);
+}
+
+.scroll-to-top-btn svg {
+  transition: transform 0.2s ease;
+}
+
+.scroll-to-top-btn:hover svg {
+  transform: translateY(-2px);
+}
+
+@media (max-width: 600px) {
+  .scroll-to-top-btn {
+    bottom: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* ==========================================================================
    OPTION 2: BRAND-GREEN OVERLAY + CREAM TEXT (Integrated from option2.css)
    Lauryn and Littles - Au Pair & Family Matching
    Active selection adopted for main index.html
@@ -2658,6 +2746,7 @@ ul {
   white-space: nowrap;
   -webkit-text-stroke: 0.35px var(--color-wall-portrait, #f7f2ea);
   text-shadow: 0 1px 3px rgba(20, 32, 24, 0.5);
+  filter: none !important;
 }
 
 .hero-green-content .serif-line {
@@ -2671,6 +2760,7 @@ ul {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   text-shadow: 0 1px 3px rgba(20, 32, 24, 0.45);
+  filter: none !important;
 }
 
 /* 5. Buttons (High Contrast Against Brand Green) */
@@ -2775,7 +2865,7 @@ body.has-green-overlay .site-header.scrolled .brand-subtitle {
 @media (min-width: 768px) {
   .hero-section.hero-green-overlay {
     background-image: url('../images/1000054758.jpg') !important;
-    background-position: 72% center !important;
+    background-position: 84% center !important;
     background-size: cover !important;
     height: 100vh;
     height: 100dvh;
@@ -2784,21 +2874,20 @@ body.has-green-overlay .site-header.scrolled .brand-subtitle {
     justify-content: center;
   }
 
-  /* Desktop Multi-Stop Horizontal Gradient */
+  /* Desktop Multi-Stop Horizontal Gradient: Rich green on left, clear on Lauryn */
   .hero-section.hero-green-overlay::before {
     background: linear-gradient(
       90deg,
-      rgba(38, 54, 45, 0.94) 0%,
-      rgba(45, 62, 53, 0.92) 26%,
-      rgba(48, 66, 56, 0.86) 36%,
-      rgba(55, 74, 64, 0.65) 46%,
-      rgba(65, 84, 73, 0.35) 54%,
-      rgba(74, 92, 82, 0.12) 60%,
-      transparent 66%
+      rgba(38, 54, 45, 0.95) 0%,
+      rgba(42, 59, 49, 0.93) 25%,
+      rgba(45, 62, 53, 0.85) 35%,
+      rgba(52, 70, 60, 0.50) 46%,
+      rgba(62, 80, 70, 0.15) 54%,
+      transparent 60%
     ),
     linear-gradient(
       180deg,
-      rgba(38, 54, 45, 0.50) 0%,
+      rgba(38, 54, 45, 0.45) 0%,
       transparent 18%
     );
   }
@@ -2807,28 +2896,38 @@ body.has-green-overlay .site-header.scrolled .brand-subtitle {
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    padding: clamp(90px, 12vh, 120px) 40px clamp(40px, 6vh, 60px) clamp(50px, 7vw, 110px);
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: clamp(90px, 12vh, 120px) 40px clamp(40px, 6vh, 60px) clamp(40px, 6vw, 100px);
   }
 
   .hero-green-content {
-    max-width: 520px;
+    max-width: 480px;
     margin: 0;
     align-items: center;
     text-align: center;
   }
 
   .hero-green-content .script-line {
-    font-size: clamp(3.4rem, 4.3vw, 4.5rem);
-    margin-bottom: 14px;
+    font-size: clamp(3.2rem, 3.8vw, 4.3rem);
+    margin-bottom: 12px;
+    filter: none !important;
+    color: var(--color-wall-portrait, #f7f2ea) !important;
+    text-shadow: 0 1px 3px rgba(20, 32, 24, 0.5) !important;
+    -webkit-text-stroke: 0.35px var(--color-wall-portrait, #f7f2ea);
   }
 
   .hero-green-content .serif-line {
-    font-size: clamp(2.25rem, 2.9vw, 3rem);
+    font-size: clamp(2.1rem, 2.5vw, 2.7rem);
+    filter: none !important;
+    color: var(--color-wall-portrait, #f7f2ea) !important;
+    text-shadow: 0 1px 3px rgba(20, 32, 24, 0.45) !important;
   }
 
   .hero-green-content .hero-buttons {
-    gap: 16px;
-    margin-top: 8px;
+    gap: 14px;
+    margin-top: 10px;
+    justify-content: center;
   }
 }
 

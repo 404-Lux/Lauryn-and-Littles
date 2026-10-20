@@ -601,6 +601,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const NOTIFICATION_EMAIL = '';
 
   window.submitRequest = async () => {
+    const submitBtn = document.getElementById('submit-request-btn');
+    if (submitBtn && submitBtn.disabled) return;
+
     const agreeTerms = document.getElementById('agree-terms-family');
     if (agreeTerms && !agreeTerms.checked) {
       window.showToast("Please agree to the Terms of Service and Privacy Policy to proceed.", "ℹ");
@@ -608,13 +611,21 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
+    const originalBtnHtml = submitBtn ? submitBtn.innerHTML : '';
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.classList.add('is-loading');
+      submitBtn.innerHTML = '<span class="btn-spinner" aria-hidden="true"></span><span>Submitting...</span>';
+    }
+
     const roleType = requestTypeInput ? requestTypeInput.value : 'Family looking for Au Pair';
-    const clientName = document.getElementById('client-name')?.value || 'there';
-    const clientPhone = document.getElementById('client-phone')?.value || '';
-    const clientEmail = document.getElementById('client-email')?.value || '';
-    const location = document.getElementById('need-location')?.value || '—';
+    const clientName = document.getElementById('client-name')?.value?.trim() || '';
+    const clientPhone = document.getElementById('client-phone')?.value?.trim() || '';
+    const clientEmail = document.getElementById('client-email')?.value?.trim() || '';
+    const location = document.getElementById('need-location')?.value?.trim() || '—';
 
     const payload = {
+      formType: 'family',
       role: roleType,
       fullName: clientName,
       phone: clientPhone,
@@ -623,36 +634,47 @@ document.addEventListener('DOMContentLoaded', () => {
       submittedAt: new Date().toLocaleString('en-GB', { timeZone: 'Europe/London' })
     };
 
-    // If Google Sheets webhook is configured, dispatch the entry
-    if (GOOGLE_SHEETS_WEBHOOK_URL) {
-      try {
+    try {
+      if (GOOGLE_SHEETS_WEBHOOK_URL) {
         await fetch(GOOGLE_SHEETS_WEBHOOK_URL, {
           method: 'POST',
           mode: 'no-cors',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
         });
-      } catch (err) {
-        console.warn('Google Sheets dispatch notice:', err);
+      }
+
+      window.closeRequestModal();
+      const namePart = clientName ? ` ${clientName},` : '';
+      window.showToast(`Thank you${namePart} your details have been submitted, our team will be in contact with you shortly.`);
+      const form = document.getElementById('request-form');
+      if (form) form.reset();
+
+      // Re-default date range and hours range after form reset
+      rangeStartDate = null;
+      rangeEndDate = null;
+      updateDateDisplay();
+
+      timeStartIdx = null;
+      timeEndIdx = null;
+      updateTimeDisplay();
+
+    } catch (err) {
+      console.warn('Submission error:', err);
+      window.showToast("There was an issue sending your details. Please try again.", "⚠️");
+    } finally {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.classList.remove('is-loading');
+        submitBtn.innerHTML = originalBtnHtml;
       }
     }
-
-    window.closeRequestModal();
-    window.showToast(`Thank you, ${clientName}! Your request has been received. We are preparing your accurate quotes now.`);
-    const form = document.getElementById('request-form');
-    if (form) form.reset();
-
-    // Re-default date range and hours range after form reset
-    rangeStartDate = null;
-    rangeEndDate = null;
-    updateDateDisplay();
-
-    timeStartIdx = null;
-    timeEndIdx = null;
-    updateTimeDisplay();
   };
 
   window.submitWaitingList = async () => {
+    const submitBtn = document.getElementById('submit-waiting-btn');
+    if (submitBtn && submitBtn.disabled) return;
+
     const agreeTerms = document.getElementById('agree-terms-sitter');
     if (agreeTerms && !agreeTerms.checked) {
       window.showToast("Please agree to the Terms of Service and Privacy Policy to proceed.", "ℹ");
@@ -660,11 +682,19 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    const fullName = document.getElementById('waiting-name')?.value || 'there';
-    const email = document.getElementById('waiting-email')?.value || '';
-    const phone = document.getElementById('waiting-phone')?.value || '';
+    const originalBtnHtml = submitBtn ? submitBtn.innerHTML : '';
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.classList.add('is-loading');
+      submitBtn.innerHTML = '<span class="btn-spinner" aria-hidden="true"></span><span>Submitting...</span>';
+    }
+
+    const fullName = document.getElementById('waiting-name')?.value?.trim() || '';
+    const email = document.getElementById('waiting-email')?.value?.trim() || '';
+    const phone = document.getElementById('waiting-phone')?.value?.trim() || '';
 
     const payload = {
+      formType: 'nanny',
       role: 'Au Pair looking for a Family (Waiting List)',
       fullName: fullName,
       email: email,
@@ -673,23 +703,32 @@ document.addEventListener('DOMContentLoaded', () => {
       submittedAt: new Date().toLocaleString('en-GB', { timeZone: 'Europe/London' })
     };
 
-    if (GOOGLE_SHEETS_WEBHOOK_URL) {
-      try {
+    try {
+      if (GOOGLE_SHEETS_WEBHOOK_URL) {
         await fetch(GOOGLE_SHEETS_WEBHOOK_URL, {
           method: 'POST',
           mode: 'no-cors',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
         });
-      } catch (err) {
-        console.warn('Google Sheets dispatch notice:', err);
+      }
+
+      window.closeRequestModal();
+      const namePart = fullName ? ` ${fullName},` : '';
+      window.showToast(`Thank you${namePart} your details have been submitted, our team will be in contact with you shortly.`);
+      const waitingForm = document.getElementById('waiting-list-form');
+      if (waitingForm) waitingForm.reset();
+
+    } catch (err) {
+      console.warn('Waiting list submission error:', err);
+      window.showToast("There was an issue sending your details. Please try again.", "⚠️");
+    } finally {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.classList.remove('is-loading');
+        submitBtn.innerHTML = originalBtnHtml;
       }
     }
-
-    window.closeRequestModal();
-    window.showToast(`Thank you, ${fullName}! You’ve been added to our waiting list.`);
-    const waitingForm = document.getElementById('waiting-list-form');
-    if (waitingForm) waitingForm.reset();
   };
 
   // 4. Header Scroll Transparency Effect (Hero Page only)
@@ -728,6 +767,30 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       siteFooter.classList.add('footer-visible');
     }
+  }
+
+  // 6. Scroll to Top Floating Button (Legal pages)
+  const scrollTopBtn = document.getElementById('scroll-to-top-btn');
+  if (scrollTopBtn) {
+    const handleScrollToggle = () => {
+      const scrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
+      if (scrollY > 280) {
+        scrollTopBtn.classList.add('is-visible');
+      } else {
+        scrollTopBtn.classList.remove('is-visible');
+      }
+    };
+
+    window.addEventListener('scroll', handleScrollToggle, { passive: true });
+    window.addEventListener('load', handleScrollToggle, { passive: true });
+    handleScrollToggle();
+
+    scrollTopBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
   }
 });
 
