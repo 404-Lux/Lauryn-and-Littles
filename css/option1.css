@@ -51,15 +51,14 @@
   width: 100%;
   max-width: 1240px;
   margin: 0 auto;
-  min-height: 100vh;
-  min-height: 100dvh;
+  min-height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   box-sizing: border-box;
-  padding: clamp(84px, 12vh, 108px) 20px clamp(36px, 5vh, 60px) 20px;
-  gap: clamp(28px, 4vh, 48px);
+  padding: clamp(70px, 8.5vh, 84px) 16px clamp(16px, 2.5vh, 24px) 16px;
+  gap: clamp(12px, 1.8vh, 18px);
 }
 
 /* --------------------------------------------------------------------------
@@ -67,7 +66,7 @@
    -------------------------------------------------------------------------- */
 .arch-text-col {
   width: 100%;
-  max-width: 540px;
+  max-width: 500px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -80,7 +79,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 12px;
+  margin-bottom: 6px;
+}
+
+.arch-text-col .hero-heart-badge .heart-svg {
+  width: 20px;
+  height: 20px;
 }
 
 /* Headline - Preserving font-family, sizes & colors strictly */
@@ -89,7 +93,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-bottom: clamp(18px, 3.5vh, 28px);
+  margin-bottom: clamp(12px, 2vh, 16px);
   color: #4a5c52;
   line-height: 1.12;
   width: 100%;
@@ -97,31 +101,31 @@
 
 .arch-text-col .script-line {
   font-family: 'Brittany Signature', var(--font-script, cursive);
-  font-size: clamp(3rem, 9.2vw, 4.3rem);
+  font-size: clamp(2.6rem, 7.8vw, 3.6rem);
   font-weight: 400;
   font-style: normal;
   color: #4a5c52;
   display: block;
   letter-spacing: normal;
   transform: none;
-  margin-bottom: 16px;
-  line-height: 1.2;
+  margin-bottom: 8px;
+  line-height: 1.18;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  padding: 0.12em 0.2em;
+  padding: 0.1em 0.2em;
   overflow: visible;
   white-space: nowrap;
 }
 
 .arch-text-col .serif-line {
   font-family: var(--font-headline-serif, 'Playfair Display', Georgia, serif);
-  font-size: clamp(2.1rem, 6.4vw, 2.8rem);
+  font-size: clamp(1.85rem, 5.6vw, 2.45rem);
   font-weight: 400;
   letter-spacing: -0.012em;
   color: #4a5c52;
   display: block;
-  line-height: 1.16;
+  line-height: 1.15;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
@@ -131,10 +135,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 10px;
   flex-wrap: wrap;
   width: 100%;
   margin-bottom: 0;
+}
+
+.arch-text-col .btn-hero-primary,
+.arch-text-col .btn-hero-secondary {
+  padding: 10px 22px;
+  font-size: clamp(0.88rem, 2.6vw, 0.98rem);
 }
 
 /* --------------------------------------------------------------------------
@@ -151,8 +161,8 @@
 
 .arch-frame-wrapper {
   position: relative;
-  width: clamp(270px, 74vw, 360px);
-  aspect-ratio: 1 / 1.42;
+  width: clamp(210px, 58vw, 280px);
+  aspect-ratio: 1 / 1.34;
   margin: 0 auto;
   border-radius: 999px 999px 18px 18px;
 }
@@ -163,7 +173,7 @@
   inset: 0;
   border-radius: inherit;
   border: 2px solid var(--color-blush, #e5aba0);
-  transform: translate(12px, 12px);
+  transform: translate(10px, 10px);
   pointer-events: none;
   z-index: 1;
   opacity: 0.85;
@@ -211,8 +221,8 @@
   .hero-section.hero-arch-layout {
     height: 100vh;
     height: 100dvh;
-    min-height: 640px;
-    max-height: 1080px;
+    min-height: 580px;
+    max-height: 920px;
     justify-content: center;
   }
 
@@ -220,26 +230,26 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding: clamp(90px, 12vh, 120px) clamp(40px, 6vw, 100px) clamp(40px, 6vh, 60px) clamp(40px, 6vw, 100px);
-    gap: clamp(40px, 5vw, 80px);
+    padding: clamp(76px, 9vh, 96px) clamp(36px, 5vw, 80px) clamp(30px, 4vh, 48px) clamp(36px, 5vw, 80px);
+    gap: clamp(32px, 4vw, 64px);
   }
 
   /* Left column: Text */
   .arch-text-col {
     flex: 1 1 50%;
-    max-width: 540px;
+    max-width: 520px;
     margin: 0;
     align-items: center;
     text-align: center;
   }
 
   .arch-text-col .script-line {
-    font-size: clamp(3.2rem, 4.2vw, 4.4rem);
-    margin-bottom: 14px;
+    font-size: clamp(3rem, 4vw, 4.2rem);
+    margin-bottom: 12px;
   }
 
   .arch-text-col .serif-line {
-    font-size: clamp(2.2rem, 2.8vw, 2.9rem);
+    font-size: clamp(2.1rem, 2.7vw, 2.8rem);
   }
 
   .arch-text-col .hero-buttons {
@@ -254,13 +264,13 @@
   }
 
   .arch-frame-wrapper {
-    width: clamp(330px, 30vw, 430px);
-    aspect-ratio: 1 / 1.44;
+    width: clamp(290px, 26vw, 380px);
+    aspect-ratio: 1 / 1.36;
     margin: 0;
   }
 
   .arch-offset-outline {
-    transform: translate(16px, 16px);
+    transform: translate(14px, 14px);
   }
 
   .arch-frame-wrapper:hover .arch-offset-outline {
