@@ -1,0 +1,129 @@
+/* ==========================================================================
+   OPTION 3: PHOTO BACKGROUND (1000054772.jpg) - (option3.css)
+   Lauryn and Littles - Au Pair & Family Matching
+   Same style and html as index.html, with 1000054772.jpg as background image
+   ========================================================================== */
+
+/* Mobile / Portrait Hero Background with Warm Cream Header Gradient */
+.hero-section {
+  background-image: linear-gradient(
+    180deg,
+    rgba(247, 242, 234, 0.96) 0%,
+    rgba(247, 242, 234, 0.96) 29%,
+    rgba(247, 242, 234, 0.92) 34%,
+    rgba(247, 242, 234, 0.70) 38%,
+    rgba(247, 242, 234, 0.30) 41.5%,
+    transparent 44%
+  ), url('../images/1000054772.jpg') !important;
+  background-repeat: no-repeat !important;
+  background-position: center 30% !important;
+  background-size: cover !important;
+}
+
+/* Tablet Media Query (768px - 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+  .hero-section {
+    background-image: linear-gradient(
+      180deg,
+      rgba(247, 242, 234, 0.96) 0%,
+      rgba(247, 242, 234, 0.96) 30%,
+      rgba(247, 242, 234, 0.88) 36%,
+      rgba(247, 242, 234, 0.50) 42%,
+      transparent 48%
+    ), url('../images/1000054772.jpg') !important;
+    background-position: center 26% !important;
+    background-size: cover !important;
+  }
+}
+
+/* Desktop Media Query (min-width: 992px) */
+@media (min-width: 992px) {
+  .hero-section {
+    aspect-ratio: auto;
+    background-image: linear-gradient(
+      90deg,
+      rgba(247, 242, 234, 0.96) 0%,
+      rgba(247, 242, 234, 0.94) 38%,
+      rgba(247, 242, 234, 0.70) 48%,
+      rgba(247, 242, 234, 0.20) 60%,
+      transparent 72%
+    ), url('../images/1000054772.jpg') !important;
+    background-repeat: no-repeat !important;
+    background-position: 68% 28% !important;
+    background-size: cover !important;
+    min-height: 100vh;
+    min-height: 100dvh;
+    height: 100vh;
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   OPTION PREVIEW BADGE / SWITCHER (Easily removable)
+   -------------------------------------------------------------------------- */
+.option-preview-badge {
+  position: fixed;
+  bottom: 22px;
+  right: 22px;
+  z-index: 999;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background-color: rgba(247, 242, 234, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(74, 92, 82, 0.18);
+  border-radius: 9999px;
+  padding: 6px 14px 6px 16px;
+  box-shadow: 0 8px 24px rgba(50, 60, 52, 0.14);
+  font-family: var(--font-sans, -apple-system, sans-serif);
+  font-size: 0.82rem;
+  color: #4a5c52;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.option-preview-badge:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(50, 60, 52, 0.20);
+}
+
+.preview-badge-label {
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.preview-badge-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border-left: 1px solid rgba(74, 92, 82, 0.2);
+  padding-left: 8px;
+}
+
+.preview-badge-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  height: 24px;
+  padding: 0 6px;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #4a5c52;
+  background-color: transparent;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.preview-badge-link:hover {
+  background-color: rgba(74, 92, 82, 0.12);
+}
+
+.preview-badge-link.active {
+  background-color: #4a5c52;
+  color: #ffffff;
+}
