@@ -792,6 +792,55 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
+
+  // 7. Interactive Terms of Service Role Switcher Tabs (terms.html)
+  const tabFamilyBtn = document.getElementById('tab-family-btn');
+  const tabAupairBtn = document.getElementById('tab-aupair-btn');
+  const termsFamilyPanel = document.getElementById('terms-family-panel');
+  const termsAupairPanel = document.getElementById('terms-aupair-panel');
+
+  if (tabFamilyBtn && tabAupairBtn && termsFamilyPanel && termsAupairPanel) {
+    const switchTermsTab = (targetTab) => {
+      if (targetTab === 'aupair') {
+        tabAupairBtn.classList.add('active');
+        tabAupairBtn.setAttribute('aria-selected', 'true');
+        tabFamilyBtn.classList.remove('active');
+        tabFamilyBtn.setAttribute('aria-selected', 'false');
+
+        termsAupairPanel.style.display = 'block';
+        termsFamilyPanel.style.display = 'none';
+      } else {
+        tabFamilyBtn.classList.add('active');
+        tabFamilyBtn.setAttribute('aria-selected', 'true');
+        tabAupairBtn.classList.remove('active');
+        tabAupairBtn.setAttribute('aria-selected', 'false');
+
+        termsFamilyPanel.style.display = 'block';
+        termsAupairPanel.style.display = 'none';
+      }
+    };
+
+    // Check URL parameters (?tab=aupair) or hash (#aupair) on page load
+    const urlParams = new URLSearchParams(window.location.search);
+    const tabParam = urlParams.get('tab');
+    const hash = window.location.hash.toLowerCase();
+
+    if (tabParam === 'aupair' || hash === '#aupair') {
+      switchTermsTab('aupair');
+    } else {
+      switchTermsTab('family');
+    }
+
+    tabFamilyBtn.addEventListener('click', () => {
+      switchTermsTab('family');
+      history.replaceState(null, '', '?tab=family');
+    });
+
+    tabAupairBtn.addEventListener('click', () => {
+      switchTermsTab('aupair');
+      history.replaceState(null, '', '?tab=aupair');
+    });
+  }
 });
 
 
